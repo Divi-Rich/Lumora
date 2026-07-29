@@ -1,4 +1,7 @@
-// Lumora JavaScript
-// Interactive features will be added here soon.
+// Lumora v0.2
 
-console.log("Welcome to Lumora 🚀");
+const startButton = document.querySelector(".primary");
+
+startButton.addEventListener("click", () => {
+    alert("🚀 Welcome to Lumora! Your journey starts here.");
+});
