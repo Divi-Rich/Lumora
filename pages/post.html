@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Create Post | Lumora</title>
@@ -22,72 +20,80 @@
 <h1 class="logo">🌟 Lumora</h1>
 
 <ul class="nav-links">
-
 <li><a href="../index.html">Home</a></li>
-
 <li><a href="dashboard.html">Dashboard</a></li>
-
 <li><a href="profile.html">Profile</a></li>
-
 <li><a href="reels.html">Reels</a></li>
-
 </ul>
 
 </nav>
 
 </header>
 
-<section class="create-post">
-
-<h1>Create Something Amazing 🚀</h1>
-
-<p>Share your ideas with the Lumora community.</p>
+<section class="create-post-page">
 
 <div class="post-box">
 
-<input type="text" placeholder="Post Title">
+<h1>Create a New Post</h1>
 
-<textarea placeholder="What's on your mind today?"></textarea>
+<p>Share your thoughts, photos, videos and ideas with everyone.</p>
+
+<form id="postForm">
+
+<label>Post Title</label>
+
+<input
+type="text"
+id="postTitle"
+placeholder="Give your post a title..."
+required>
+
+<label>What's on your mind?</label>
+
+<textarea
+id="postContent"
+rows="6"
+placeholder="Write something amazing..."
+required></textarea>
 
 <label>Upload Image</label>
 
-<input type="file">
+<input
+type="file"
+id="imageUpload"
+accept="image/*">
 
-<label>Upload Video Reel</label>
+<div id="imagePreview"></div>
 
-<input type="file" accept="video/*">
+<label>Upload Video</label>
 
-<label>Upload Music</label>
+<input
+type="file"
+id="videoUpload"
+accept="video/*">
 
-<input type="file" accept="audio/*">
+<div id="videoPreview"></div>
 
-<select>
+<label>Upload Music (Coming Soon)</label>
 
-<option>Choose Category</option>
+<input
+type="file"
+accept="audio/*"
+disabled>
 
-<option>Technology</option>
+<div class="post-buttons">
 
-<option>Music</option>
-
-<option>Business</option>
-
-<option>Education</option>
-
-<option>Entertainment</option>
-
-<option>Gaming</option>
-
-<option>Sports</option>
-
-<option>AI</option>
-
-</select>
-
-<button class="primary">
-
-Publish Post
-
+<button type="reset" class="secondary">
+Clear
 </button>
+
+<button type="submit" class="primary">
+🚀 Publish Post
+</button>
+
+</div>
+
+</form>
 
 </div>
 
@@ -96,6 +102,8 @@ Publish Post
 <footer>
 
 <p>© 2026 Lumora</p>
+
+<p>Discover • Learn • Connect • Grow</p>
 
 </footer>
 
