@@ -298,3 +298,105 @@ font-size:30px;
 }
 
 }
+
+/* PROFILE PAGE */
+
+.profile-page{
+
+padding:60px 8%;
+
+}
+
+.profile-header{
+
+text-align:center;
+
+margin-bottom:50px;
+
+}
+
+.profile-picture{
+
+width:150px;
+
+height:150px;
+
+margin:auto;
+
+border-radius:50%;
+
+background:#38bdf8;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:70px;
+
+margin-bottom:20px;
+
+}
+
+.profile-header h1{
+
+font-size:42px;
+
+}
+
+.profile-header p{
+
+color:#cbd5e1;
+
+margin:15px 0;
+
+}
+
+.profile-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+gap:25px;
+
+}
+
+.profile-card{
+
+background:#1e293b;
+
+padding:30px;
+
+border-radius:20px;
+
+transition:.3s;
+
+}
+
+.profile-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.profile-card h2{
+
+margin-bottom:20px;
+
+color:#38bdf8;
+
+}
+
+.profile-card ul{
+
+padding-left:20px;
+
+}
+
+.profile-card li{
+
+margin-bottom:10px;
+
+}
