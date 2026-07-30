@@ -274,4 +274,102 @@ grid-template-columns:1fr;
     margin-top:15px;
 }
 
+/* ========================= */
+/* CREATE POST PAGE */
+/* ========================= */
+
+.create-post-page{
+    padding:60px 8%;
+    display:flex;
+    justify-content:center;
+}
+
+.post-box{
+    width:100%;
+    max-width:800px;
+    background:#1e293b;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.post-box h1{
+    font-size:36px;
+    margin-bottom:10px;
+}
+
+.post-box p{
+    color:#b8c5d6;
+    margin-bottom:30px;
+}
+
+.post-box label{
+    display:block;
+    margin:18px 0 8px;
+    font-weight:600;
+}
+
+.post-box input[type="text"],
+.post-box textarea{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#0f172a;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+.post-box textarea{
+    resize:vertical;
+    min-height:180px;
+}
+
+.post-box input[type="file"]{
+    width:100%;
+    margin-top:10px;
+    color:white;
+}
+
+#imagePreview,
+#videoPreview{
+    margin-top:15px;
+}
+
+#imagePreview img{
+    width:100%;
+    border-radius:15px;
+}
+
+#videoPreview video{
+    width:100%;
+    border-radius:15px;
+}
+
+.post-buttons{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-top:30px;
+}
+
+.post-buttons button{
+    flex:1;
+}
+
+@media(max-width:768px){
+
+.post-box{
+padding:25px;
+}
+
+.post-box h1{
+font-size:28px;
+}
+
+.post-buttons{
+flex-direction:column;
+}
+
 }
