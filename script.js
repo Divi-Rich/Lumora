@@ -99,15 +99,15 @@ videoPreview.innerHTML="";
 }
 
 // Load Posts
-const postsContainer=document.getElementById("postsContainer");
+const postsContainer = document.getElementById("postsContainer");
 
-if(postsContainer){
+if (postsContainer) {
 
-const posts=JSON.parse(localStorage.getItem("lumoraPosts"))||[];
+const posts = JSON.parse(localStorage.getItem("lumoraPosts")) || [];
 
-posts.forEach(post=>{
+posts.forEach(post => {
 
-postsContainer.innerHTML+=`
+postsContainer.innerHTML += `
 
 <div class="feed-card">
 
@@ -117,10 +117,58 @@ postsContainer.innerHTML+=`
 
 <small>${post.date}</small>
 
+<div class="post-actions">
+
+<button onclick="likePost(this)">❤️ Like</button>
+
+<button onclick="commentPost()">💬 Comment</button>
+
+<button onclick="sharePost()">🔄 Share</button>
+
+<button onclick="savePost()">🔖 Save</button>
+
+</div>
+
 </div>
 
 `;
 
 });
+
+}
+
+// Functions
+
+function likePost(btn){
+
+let text = btn.innerHTML;
+
+if(text.includes("Liked")){
+
+btn.innerHTML = "❤️ Like";
+
+}else{
+
+btn.innerHTML = "❤️ Liked";
+
+}
+
+}
+
+function commentPost(){
+
+alert("💬 Comments coming soon!");
+
+}
+
+function sharePost(){
+
+alert("🔄 Share feature coming soon!");
+
+}
+
+function savePost(){
+
+alert("🔖 Post saved!");
 
 }
