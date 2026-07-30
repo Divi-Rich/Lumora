@@ -477,3 +477,89 @@ color:#cbd5e1;
 color:#cbd5e1;
 line-height:2;
 }
+
+/* ===========================
+CREATE POST PAGE
+=========================== */
+
+.create-post{
+
+padding:60px 10%;
+
+text-align:center;
+
+}
+
+.create-post h1{
+
+font-size:45px;
+
+margin-bottom:10px;
+
+}
+
+.create-post p{
+
+color:#cbd5e1;
+
+margin-bottom:40px;
+
+}
+
+.post-box{
+
+background:#1e293b;
+
+max-width:700px;
+
+margin:auto;
+
+padding:40px;
+
+border-radius:20px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.post-box input,
+
+.post-box textarea,
+
+.post-box select{
+
+padding:16px;
+
+border:none;
+
+border-radius:12px;
+
+background:#0f172a;
+
+color:white;
+
+font-size:16px;
+
+}
+
+.post-box textarea{
+
+height:180px;
+
+resize:none;
+
+}
+
+.post-box label{
+
+text-align:left;
+
+font-weight:bold;
+
+color:#38bdf8;
+
+}
