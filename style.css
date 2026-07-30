@@ -260,4 +260,18 @@ grid-template-columns:1fr;
 
 }
 
+/* PEOPLE PAGE */
+
+.people-page{
+    padding:50px 8%;
+}
+
+.people-page .card{
+    text-align:center;
+}
+
+.people-page button{
+    margin-top:15px;
+}
+
 }
