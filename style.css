@@ -418,3 +418,27 @@ margin-bottom:15px;
 .feed-card small{
 color:#94a3b8;
 }
+
+/* POST ACTIONS */
+
+.post-actions{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:20px;
+}
+
+.post-actions button{
+background:#0f172a;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.post-actions button:hover{
+background:#2563eb;
+transform:translateY(-2px);
+}
