@@ -1,48 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up | Lumora</title>
 
-    <link rel="stylesheet" href="../style.css">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sign Up | Lumora</title>
+
+<link rel="stylesheet" href="../style.css">
+
 </head>
+
 <body>
 
 <div class="login-container">
 
-    <div class="login-box">
+<div class="login-box">
 
-        <h1>🌟 Lumora</h1>
+<h1>🌟 Lumora</h1>
 
-        <h2>Create Account</h2>
+<h2>Create Account</h2>
 
-        <p>Start your Lumora journey today.</p>
+<p>Join the Lumora community today.</p>
 
-        <form>
+<form id="signupForm">
 
-            <input type="text" placeholder="Full Name" required>
+<input
+type="email"
+id="signupEmail"
+placeholder="Email Address"
+required>
 
-            <input type="email" placeholder="Email Address" required>
+<input
+type="password"
+id="signupPassword"
+placeholder="Password"
+required>
 
-            <input type="password" placeholder="Password" required>
+<button type="submit">
 
-            <button type="submit">
-                Create Account
-            </button>
+Create Account
 
-        </form>
+</button>
 
-        <p class="bottom-text">
-            Already have an account?
-            <a href="login.html">Login</a>
-        </p>
+</form>
 
-    </div>
+<p class="bottom-text">
+
+Already have an account?
+
+<a href="login.html">
+
+Login
+
+</a>
+
+</p>
 
 </div>
 
-<script src="../script.js"></script>
+</div>
+
+<script type="module" src="../js/firebase.js"></script>
 
 </body>
+
 </html>
