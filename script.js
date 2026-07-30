@@ -1,22 +1,27 @@
+// =======================================
+// LUMORA SCRIPT v1.0
+// =======================================
+
+console.log("🌟 Lumora Loaded Successfully");
+
 // ===============================
-// LUMORA SCRIPT
+// IMAGE PREVIEW
 // ===============================
 
-// Image Preview
 const imageUpload = document.getElementById("imageUpload");
 const imagePreview = document.getElementById("imagePreview");
 
-if (imageUpload) {
+if (imageUpload && imagePreview) {
 
 imageUpload.addEventListener("change", function () {
 
 const file = this.files[0];
 
-if(file){
+if (!file) return;
 
 const reader = new FileReader();
 
-reader.onload = function(e){
+reader.onload = function (e) {
 
 imagePreview.innerHTML = `
 <img src="${e.target.result}" alt="Preview">
@@ -26,86 +31,116 @@ imagePreview.innerHTML = `
 
 reader.readAsDataURL(file);
 
-}
-
 });
 
 }
 
-// Video Preview
+// ===============================
+// VIDEO PREVIEW
+// ===============================
+
 const videoUpload = document.getElementById("videoUpload");
 const videoPreview = document.getElementById("videoPreview");
 
-if(videoUpload){
+if (videoUpload && videoPreview) {
 
-videoUpload.addEventListener("change",function(){
+videoUpload.addEventListener("change", function () {
 
-const file=this.files[0];
+const file = this.files[0];
 
-if(file){
+if (!file) return;
 
-const url=URL.createObjectURL(file);
+const url = URL.createObjectURL(file);
 
-videoPreview.innerHTML=`
+videoPreview.innerHTML = `
 <video controls>
 <source src="${url}">
+Your browser does not support video.
 </video>
 `;
 
-}
-
 });
 
 }
 
-// Create Post
-const postForm=document.getElementById("postForm");
+// ===============================
+// CREATE POST
+// ===============================
 
-if(postForm){
+const postForm = document.getElementById("postForm");
 
-postForm.addEventListener("submit",function(e){
+if (postForm) {
+
+postForm.addEventListener("submit", function (e) {
 
 e.preventDefault();
 
-const title=document.getElementById("postTitle").value;
-const content=document.getElementById("postContent").value;
+const title = document.getElementById("postTitle").value;
 
-const post={
+const content = document.getElementById("postContent").value;
 
-title:title,
+const image = imagePreview.innerHTML;
 
-content:content,
+const video = videoPreview.innerHTML;
 
-date:new Date().toLocaleString()
+const post = {
+
+author: "Eduok Divine Richard",
+
+title: title,
+
+content: content,
+
+image: image,
+
+video: video,
+
+likes: 0,
+
+date: new Date().toLocaleString()
 
 };
 
-let posts=JSON.parse(localStorage.getItem("lumoraPosts"))||[];
+let posts = JSON.parse(localStorage.getItem("lumoraPosts")) || [];
 
 posts.unshift(post);
 
-localStorage.setItem("lumoraPosts",JSON.stringify(posts));
+localStorage.setItem("lumoraPosts", JSON.stringify(posts));
 
-alert("🎉 Your post has been published!");
+alert("🎉 Post Published Successfully!");
 
 postForm.reset();
 
-imagePreview.innerHTML="";
+imagePreview.innerHTML = "";
 
-videoPreview.innerHTML="";
+videoPreview.innerHTML = "";
 
 });
 
 }
 
-// Load Posts
+// ===============================
+// LOAD POSTS
+// ===============================
+
 const postsContainer = document.getElementById("postsContainer");
 
 if (postsContainer) {
 
 const posts = JSON.parse(localStorage.getItem("lumoraPosts")) || [];
 
-posts.forEach(post => {
+if (posts.length === 0) {
+
+postsContainer.innerHTML = `
+<div class="feed-card">
+<h2>No Posts Yet</h2>
+<p>Create your first post to see it here.</p>
+</div>
+`;
+
+}
+
+posts.forEach((post, index) => {
 
 postsContainer.innerHTML += `
 
@@ -117,7 +152,7 @@ postsContainer.innerHTML += `
 
 <div>
 
-<h3>Eduok Divine Richard</h3>
+<h3>${post.author}</h3>
 
 <small>${post.date}</small>
 
@@ -129,15 +164,27 @@ postsContainer.innerHTML += `
 
 <p>${post.content}</p>
 
+${post.image}
+
+${post.video}
+
 <div class="post-actions">
 
-<button onclick="likePost(this)">❤️ Like</button>
+<button onclick="likePost(${index}, this)">
+❤️ ${post.likes}
+</button>
 
-<button onclick="commentPost()">💬 Comment</button>
+<button onclick="commentPost()">
+💬 Comment
+</button>
 
-<button onclick="sharePost()">🔄 Share</button>
+<button onclick="sharePost()">
+🔄 Share
+</button>
 
-<button onclick="savePost()">🔖 Save</button>
+<button onclick="savePost()">
+🔖 Save
+</button>
 
 </div>
 
@@ -149,38 +196,66 @@ postsContainer.innerHTML += `
 
 }
 
-// Functions
+// ===============================
+// LIKE POST
+// ===============================
 
-function likePost(btn){
+function likePost(index, button) {
 
-let text = btn.innerHTML;
+let posts = JSON.parse(localStorage.getItem("lumoraPosts")) || [];
 
-if(text.includes("Liked")){
+posts[index].likes++;
 
-btn.innerHTML = "❤️ Like";
+localStorage.setItem("lumoraPosts", JSON.stringify(posts));
 
-}else{
-
-btn.innerHTML = "❤️ Liked";
-
-}
+button.innerHTML = "❤️ " + posts[index].likes;
 
 }
 
-function commentPost(){
+// ===============================
+// COMMENT
+// ===============================
 
-alert("💬 Comments coming soon!");
+function commentPost() {
 
-}
-
-function sharePost(){
-
-alert("🔄 Share feature coming soon!");
+alert("💬 Comments will be added in Lumora v2.");
 
 }
 
-function savePost(){
+// ===============================
+// SHARE
+// ===============================
 
-alert("🔖 Post saved!");
+function sharePost() {
+
+alert("🔄 Share feature coming soon.");
 
 }
+
+// ===============================
+// SAVE
+// ===============================
+
+function savePost() {
+
+alert("🔖 Post Saved!");
+
+}
+
+// ===============================
+// START BUTTON
+// ===============================
+
+const startButton = document.querySelector(".primary");
+
+if (startButton && !postForm) {
+
+startButton.addEventListener("click", function () {
+
+alert("🚀 Welcome to Lumora!");
+
+});
+
+}
+
+console.log("✅ Lumora Ready");
