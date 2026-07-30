@@ -466,3 +466,35 @@ transition:.3s;
 background:#2563eb;
 transform:translateY(-2px);
 }
+
+/* POST HEADER */
+
+.post-header{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:20px;
+}
+
+.avatar{
+width:60px;
+height:60px;
+border-radius:50%;
+background:#2563eb;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:28px;
+color:white;
+font-weight:bold;
+}
+
+.post-header h3{
+margin:0;
+color:white;
+font-size:20px;
+}
+
+.post-header small{
+color:#94a3b8;
+}
