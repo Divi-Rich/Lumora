@@ -1,102 +1,172 @@
-// ===============================
-// LUMORA v0.3
-// ===============================
+// ==========================================
+// LUMORA v0.4
+// COMPLETE SCRIPT.JS
+// ==========================================
 
-// Welcome Message
-console.log("🚀 Welcome to Lumora");
+console.log("🚀 Lumora Loaded Successfully");
 
-// Buttons
+// ===========================
+// BUTTONS
+// ===========================
+
 const primaryButtons = document.querySelectorAll(".primary");
 const secondaryButtons = document.querySelectorAll(".secondary");
 
-// Start Journey Button
 primaryButtons.forEach(button => {
 
-button.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
-alert(
-"🚀 Welcome to Lumora!\n\nYour journey begins now."
-);
+        alert(
+`🚀 Welcome to Lumora!
+
+Your journey starts now.
+
+Discover.
+Learn.
+Connect.
+Grow.`
+        );
+
+    });
 
 });
 
-});
-
-// Explore Button
 secondaryButtons.forEach(button => {
 
-button.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
-window.scrollTo({
+        window.scrollTo({
 
-top:document.body.scrollHeight/2,
+            top: document.body.scrollHeight,
 
-behavior:"smooth"
+            behavior: "smooth"
+
+        });
+
+    });
 
 });
 
-});
+// ===========================
+// STICKY NAVBAR SHADOW
+// ===========================
+
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 30) {
+
+        header.style.boxShadow =
+            "0 10px 25px rgba(0,0,0,.35)";
+
+    } else {
+
+        header.style.boxShadow = "none";
+
+    }
 
 });
 
-// Navbar Shadow
-const header=document.querySelector("header");
+// ===========================
+// CARD ANIMATION
+// ===========================
 
-window.addEventListener("scroll",()=>{
+const cards = document.querySelectorAll(".card,.dashboard-card");
 
-if(window.scrollY>30){
+cards.forEach(card => {
 
-header.style.boxShadow="0 10px 25px rgba(0,0,0,.25)";
+    card.style.opacity = "0";
+    card.style.transform = "translateY(40px)";
+    card.style.transition = ".7s";
 
-}else{
+});
 
-header.style.boxShadow="none";
+function revealCards() {
+
+    cards.forEach(card => {
+
+        const position = card.getBoundingClientRect().top;
+
+        const screen = window.innerHeight;
+
+        if (position < screen - 80) {
+
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+
+        }
+
+    });
 
 }
 
+window.addEventListener("scroll", revealCards);
+
+revealCards();
+
+// ===========================
+// BUTTON HOVER EFFECT
+// ===========================
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => {
+
+    button.addEventListener("mouseenter", () => {
+
+        button.style.transform = "scale(1.05)";
+
+    });
+
+    button.addEventListener("mouseleave", () => {
+
+        button.style.transform = "scale(1)";
+
+    });
+
 });
 
-// Reveal Animation
-const cards=document.querySelectorAll(".card");
+// ===========================
+// LOGIN FORM
+// ===========================
 
-const reveal=()=>{
+const loginForm = document.querySelector("form");
 
-cards.forEach(card=>{
+if (loginForm) {
 
-const top=card.getBoundingClientRect().top;
+    loginForm.addEventListener("submit", function(e){
 
-const screen=window.innerHeight;
+        e.preventDefault();
 
-if(top<screen-80){
+        alert("✅ Login feature coming in Lumora v0.5");
 
-card.style.opacity="1";
-
-card.style.transform="translateY(0)";
+    });
 
 }
 
-});
+// ===========================
+// AUTO YEAR
+// ===========================
 
-};
+const footer = document.querySelector("footer");
 
-cards.forEach(card=>{
+if (footer) {
 
-card.style.opacity="0";
+    const year = new Date().getFullYear();
 
-card.style.transform="translateY(40px)";
-card.style.transition=".6s";
+    footer.innerHTML = footer.innerHTML.replace("2026", year);
 
-});
+}
 
-window.addEventListener("scroll",reveal);
+// ===========================
+// CONSOLE
+// ===========================
 
-reveal();
+console.log("✅ Navigation Ready");
 
-// Footer Year
-const year=new Date().getFullYear();
+console.log("✅ Dashboard Ready");
 
-const footer=document.querySelector("footer p:last-child");
+console.log("✅ Animations Ready");
 
-footer.innerHTML=`© ${year} Lumora. All Rights Reserved.`;
-
-console.log("✅ Lumora Loaded Successfully");
+console.log("✅ Lumora v0.4 Running");
