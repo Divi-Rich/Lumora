@@ -1,3 +1,7 @@
+/* ==========================================
+   LUMORA v0.4 - COMPLETE STYLE.CSS
+========================================== */
+
 *{
 margin:0;
 padding:0;
@@ -9,239 +13,288 @@ scroll-behavior:smooth;
 }
 
 body{
-font-family:'Poppins',sans-serif;
-background:#0F172A;
-color:#F8FAFC;
+font-family:Arial,Helvetica,sans-serif;
+background:#0f172a;
+color:#fff;
 line-height:1.7;
 }
+
+/* NAVBAR */
 
 header{
 position:sticky;
 top:0;
 z-index:1000;
-background:rgba(15,23,42,.95);
-backdrop-filter:blur(10px);
+background:#111827;
 }
 
 .navbar{
-width:90%;
-max-width:1300px;
-margin:auto;
-padding:20px 0;
 display:flex;
 justify-content:space-between;
 align-items:center;
+padding:20px 8%;
 }
 
-.logo h1{
-font-size:34px;
-color:#38BDF8;
-letter-spacing:2px;
-}
-
-.logo p{
-font-size:12px;
-color:#CBD5E1;
+.logo{
+font-size:32px;
+font-weight:bold;
+color:#38bdf8;
 }
 
 .nav-links{
 display:flex;
-gap:28px;
+gap:25px;
 list-style:none;
 }
 
 .nav-links a{
 text-decoration:none;
 color:white;
-font-weight:500;
 transition:.3s;
 }
 
 .nav-links a:hover{
-color:#38BDF8;
+color:#38bdf8;
 }
 
-.login-btn{
-background:#38BDF8;
-padding:12px 24px;
-border-radius:30px;
-text-decoration:none;
-color:white;
-font-weight:600;
-transition:.3s;
-}
-
-.login-btn:hover{
-background:#8B5CF6;
-transform:translateY(-3px);
-}
+/* HERO */
 
 .hero{
-width:90%;
-max-width:1300px;
-margin:auto;
-min-height:90vh;
-display:grid;
-grid-template-columns:1fr 400px;
-align-items:center;
-gap:60px;
-}
-
-.tag{
-display:inline-block;
-background:#1E293B;
-padding:10px 20px;
-border-radius:30px;
-color:#38BDF8;
-font-size:14px;
-margin-bottom:25px;
+padding:120px 8%;
+text-align:center;
 }
 
 .hero h2{
-font-size:68px;
-font-weight:700;
-line-height:1.1;
+font-size:60px;
+margin-bottom:20px;
 }
 
-.gradient{
-background:linear-gradient(90deg,#38BDF8,#8B5CF6);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.description{
-margin-top:30px;
+.hero p{
+max-width:750px;
+margin:auto;
 font-size:20px;
-max-width:650px;
-color:#CBD5E1;
+color:#cbd5e1;
 }
 
-.hero-buttons{
+.buttons{
 margin-top:40px;
 display:flex;
+justify-content:center;
 gap:20px;
 flex-wrap:wrap;
 }
 
 button{
-padding:16px 35px;
+padding:15px 35px;
 border:none;
-border-radius:50px;
+border-radius:40px;
 cursor:pointer;
 font-size:17px;
-font-weight:600;
 transition:.3s;
 }
 
 .primary{
-background:#38BDF8;
+background:#38bdf8;
 color:white;
 }
 
 .primary:hover{
 transform:translateY(-5px);
-box-shadow:0 15px 40px rgba(56,189,248,.4);
+box-shadow:0 15px 30px rgba(56,189,248,.35);
 }
 
 .secondary{
 background:transparent;
-border:2px solid #38BDF8;
+border:2px solid #38bdf8;
 color:white;
 }
 
 .secondary:hover{
-background:#38BDF8;
+background:#38bdf8;
 }
 
-.hero-card{
-background:#1E293B;
-padding:35px;
-border-radius:20px;
-box-shadow:0 20px 50px rgba(0,0,0,.25);
-}
-
-.hero-card h3{
-margin-bottom:20px;
-color:#38BDF8;
-}
+/* WHY */
 
 .why{
-width:90%;
-max-width:900px;
-margin:120px auto;
+padding:80px 8%;
 text-align:center;
 }
 
 .why h2{
 font-size:42px;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
-/* LOGIN PAGE */
+.why p{
+max-width:800px;
+margin:auto;
+color:#cbd5e1;
+}
+
+/* FEATURES */
+
+.features{
+padding:60px 8%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.card{
+background:#1e293b;
+padding:30px;
+border-radius:20px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card h3{
+margin-bottom:15px;
+color:#38bdf8;
+}
+
+.card p{
+color:#cbd5e1;
+}
+
+/* LOGIN */
 
 .login-container{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
 }
 
 .login-box{
-    width:100%;
-    max-width:420px;
-    background:#1e293b;
-    padding:40px;
-    border-radius:20px;
-    box-shadow:0 20px 50px rgba(0,0,0,.4);
-    text-align:center;
+width:100%;
+max-width:420px;
+background:#1e293b;
+padding:40px;
+border-radius:20px;
+text-align:center;
 }
 
 .login-box h1{
-    color:#38bdf8;
-    margin-bottom:10px;
-}
-
-.login-box h2{
-    margin-bottom:10px;
-}
-
-.login-box p{
-    color:#cbd5e1;
-    margin-bottom:25px;
+color:#38bdf8;
+margin-bottom:10px;
 }
 
 .login-box input{
-    width:100%;
-    padding:15px;
-    margin-bottom:15px;
-    border:none;
-    border-radius:12px;
-    background:#334155;
-    color:white;
-    font-size:16px;
+width:100%;
+padding:15px;
+margin:12px 0;
+background:#334155;
+border:none;
+border-radius:12px;
+color:white;
+font-size:16px;
 }
 
 .login-box input:focus{
-    outline:2px solid #38bdf8;
+outline:2px solid #38bdf8;
 }
 
 .login-box button{
-    width:100%;
-    background:#38bdf8;
-    color:white;
-    font-weight:bold;
-}
-
-.login-box button:hover{
-    transform:translateY(-3px);
+width:100%;
+margin-top:15px;
 }
 
 .bottom-text{
-    margin-top:20px;
+margin-top:20px;
 }
 
 .bottom-text a{
-    color:#38bdf8;
-    text-decoration:none;
+color:#38bdf8;
+text-decoration:none;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+padding:50px 8%;
+}
+
+.welcome-card{
+background:linear-gradient(135deg,#38bdf8,#8b5cf6);
+padding:40px;
+border-radius:20px;
+margin-bottom:40px;
+}
+
+.welcome-card h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.dashboard-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.dashboard-card{
+background:#1e293b;
+padding:30px;
+border-radius:20px;
+transition:.3s;
+}
+
+.dashboard-card:hover{
+transform:translateY(-8px);
+}
+
+.dashboard-card h2{
+margin-bottom:15px;
+color:#38bdf8;
+}
+
+.dashboard-card p{
+margin-bottom:20px;
+color:#cbd5e1;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:50px;
+margin-top:80px;
+background:#111827;
+}
+
+footer p{
+color:#94a3b8;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.navbar{
+flex-direction:column;
+gap:20px;
+}
+
+.nav-links{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.hero h2{
+font-size:42px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.welcome-card h1{
+font-size:30px;
+}
+
 }
