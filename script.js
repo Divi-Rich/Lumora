@@ -1,60 +1,126 @@
 // ===============================
-// LUMORA SCRIPT v0.5
+// LUMORA SCRIPT
 // ===============================
 
-console.log("🌟 Lumora Loaded");
+// Image Preview
+const imageUpload = document.getElementById("imageUpload");
+const imagePreview = document.getElementById("imagePreview");
 
-// Like buttons
-const buttons = document.querySelectorAll(".feed-actions button");
+if (imageUpload) {
 
-buttons.forEach(button=>{
+imageUpload.addEventListener("change", function () {
 
-button.addEventListener("click",()=>{
+const file = this.files[0];
 
-if(button.innerText.includes("❤️")){
+if(file){
 
-button.style.background="#ef4444";
+const reader = new FileReader();
 
-button.innerText="❤️ Liked";
+reader.onload = function(e){
 
-}
+imagePreview.innerHTML = `
+<img src="${e.target.result}" alt="Preview">
+`;
 
-else if(button.innerText.includes("💬")){
+};
 
-alert("Comments feature coming soon!");
-
-}
-
-else if(button.innerText.includes("📤")){
-
-alert("Share feature coming soon!");
-
-}
-
-else if(button.innerText.includes("🔖")){
-
-button.style.background="#22c55e";
-
-button.innerText="✅ Saved";
+reader.readAsDataURL(file);
 
 }
 
 });
 
-});
+}
 
-// Welcome Button
+// Video Preview
+const videoUpload = document.getElementById("videoUpload");
+const videoPreview = document.getElementById("videoPreview");
 
-const primary=document.querySelector(".primary");
+if(videoUpload){
 
-if(primary){
+videoUpload.addEventListener("change",function(){
 
-primary.addEventListener("click",()=>{
+const file=this.files[0];
 
-alert("🚀 Welcome to Lumora!");
+if(file){
+
+const url=URL.createObjectURL(file);
+
+videoPreview.innerHTML=`
+<video controls>
+<source src="${url}">
+</video>
+`;
+
+}
 
 });
 
 }
 
-console.log("✅ Feed Ready");
+// Create Post
+const postForm=document.getElementById("postForm");
+
+if(postForm){
+
+postForm.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const title=document.getElementById("postTitle").value;
+const content=document.getElementById("postContent").value;
+
+const post={
+
+title:title,
+
+content:content,
+
+date:new Date().toLocaleString()
+
+};
+
+let posts=JSON.parse(localStorage.getItem("lumoraPosts"))||[];
+
+posts.unshift(post);
+
+localStorage.setItem("lumoraPosts",JSON.stringify(posts));
+
+alert("🎉 Your post has been published!");
+
+postForm.reset();
+
+imagePreview.innerHTML="";
+
+videoPreview.innerHTML="";
+
+});
+
+}
+
+// Load Posts
+const postsContainer=document.getElementById("postsContainer");
+
+if(postsContainer){
+
+const posts=JSON.parse(localStorage.getItem("lumoraPosts"))||[];
+
+posts.forEach(post=>{
+
+postsContainer.innerHTML+=`
+
+<div class="feed-card">
+
+<h2>${post.title}</h2>
+
+<p>${post.content}</p>
+
+<small>${post.date}</small>
+
+</div>
+
+`;
+
+});
+
+}
