@@ -111,11 +111,23 @@ postsContainer.innerHTML += `
 
 <div class="feed-card">
 
+<div class="post-header">
+
+<div class="avatar">👤</div>
+
+<div>
+
+<h3>Eduok Divine Richard</h3>
+
+<small>${post.date}</small>
+
+</div>
+
+</div>
+
 <h2>${post.title}</h2>
 
 <p>${post.content}</p>
-
-<small>${post.date}</small>
 
 <div class="post-actions">
 
