@@ -1,24 +1,24 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-analytics.js";
+function animate(id, end) {
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDrp55t4WNInqmxW7pI8GO6vlI3ufrEHtU",
-  authDomain: "lumora-1136c.firebaseapp.com",
-  projectId: "lumora-1136c",
-  storageBucket: "lumora-1136c.firebasestorage.app",
-  messagingSenderId: "555831918720",
-  appId: "1:555831918720:web:5d1251846b43c92464e665",
-  measurementId: "G-GGCEW676RB"
-};
+let current = 0;
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const speed = Math.ceil(end / 100);
 
-console.log("Firebase Connected!");
+const counter = setInterval(() => {
 
-const btn = document.getElementById("testBtn");
-const status = document.getElementById("status");
+current += speed;
 
-btn.addEventListener("click", () => {
-    status.textContent = "✅ Firebase is connected successfully!";
-});
+if (current >= end) {
+current = end;
+clearInterval(counter);
+}
+
+document.getElementById(id).textContent = current.toLocaleString();
+
+}, 20);
+
+}
+
+animate("users", 1285);
+animate("posts", 5432);
+animate("groups", 86);
