@@ -1,81 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post | Lumora</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Create Post | Lumora</title>
-
-<link rel="stylesheet" href="../style.css">
-
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
 
-<nav class="navbar">
+<header class="navbar">
 
-<div class="logo">
+    <h1 class="logo">🌟 Lumora</h1>
 
-🌟 Lumora
+    <nav>
 
-</div>
+        <a href="../index.html">Home</a>
 
-<ul class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
 
-<li><a href="dashboard.html">Dashboard</a></li>
+        <a href="feed.html">Feed</a>
 
-<li><a href="feed.html">Feed</a></li>
+        <a href="profile.html">Profile</a>
 
-<li><a href="profile.html">Profile</a></li>
+    </nav>
 
-</ul>
+</header>
 
-</nav>
+<div class="page-container">
 
-<main class="create-post-page">
+    <div class="post-card">
 
-<div class="create-post-card">
+        <h2>Create a New Post</h2>
 
-<h1>Create a New Post</h1>
+        <p>Share your thoughts with the Lumora community.</p>
 
-<p>Share your thoughts with the Lumora community.</p>
+        <textarea
+            id="postContent"
+            placeholder="What's on your mind today?"
+            rows="8"></textarea>
 
-<form id="postForm">
+        <button id="publishBtn">
+            🚀 Publish Post
+        </button>
 
-<textarea
+        <p id="status"></p>
 
-id="postContent"
-
-placeholder="What's on your mind?"
-
-rows="8"
-
-required>
-
-</textarea>
-
-<button
-
-type="submit"
-
-class="primary">
-
-🚀 Publish Post
-
-</button>
-
-</form>
-
-<p id="postStatus"></p>
+    </div>
 
 </div>
-
-</main>
 
 <script type="module" src="../js/posts.js"></script>
 
 </body>
-
 </html>
