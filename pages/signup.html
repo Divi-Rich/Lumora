@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sign Up | Lumora</title>
@@ -19,11 +18,11 @@
 
 <div class="login-box">
 
-<h1>🌟 Lumora</h1>
+<h1 class="logo">🌟 Lumora</h1>
 
-<h2>Create Account</h2>
+<h2>Create Your Account</h2>
 
-<p>Join the Lumora community today.</p>
+<p>Start your journey with Lumora today.</p>
 
 <form id="signupForm">
 
@@ -33,11 +32,21 @@ id="signupEmail"
 placeholder="Email Address"
 required>
 
+<div class="password-box">
+
 <input
 type="password"
 id="signupPassword"
 placeholder="Password"
 required>
+
+<span
+class="toggle-password"
+onclick="togglePassword('signupPassword',this)">
+👁️
+</span>
+
+</div>
 
 <button type="submit">
 
@@ -47,21 +56,50 @@ Create Account
 
 </form>
 
-<p class="bottom-text">
-
-Already have an account?
+<div class="extra-links">
 
 <a href="login.html">
 
-Login
+Already have an account?
 
 </a>
+
+</div>
+
+<p class="bottom-text">
+
+By creating an account you agree to Lumora's
+Terms of Service and Privacy Policy.
 
 </p>
 
 </div>
 
 </div>
+
+<script>
+
+function togglePassword(id, icon){
+
+const input=document.getElementById(id);
+
+if(input.type==="password"){
+
+input.type="text";
+
+icon.textContent="🙈";
+
+}else{
+
+input.type="password";
+
+icon.textContent="👁️";
+
+}
+
+}
+
+</script>
 
 <script type="module" src="../js/firebase.js"></script>
 
