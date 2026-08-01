@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -13,101 +14,67 @@
 
 <body>
 
-<header>
-
 <nav class="navbar">
 
-<h1 class="logo">🌟 Lumora</h1>
+<div class="logo">
+
+🌟 Lumora
+
+</div>
 
 <ul class="nav-links">
-<li><a href="../index.html">Home</a></li>
+
 <li><a href="dashboard.html">Dashboard</a></li>
+
+<li><a href="feed.html">Feed</a></li>
+
 <li><a href="profile.html">Profile</a></li>
-<li><a href="reels.html">Reels</a></li>
+
 </ul>
 
 </nav>
 
-</header>
+<main class="create-post-page">
 
-<section class="create-post-page">
-
-<div class="post-box">
+<div class="create-post-card">
 
 <h1>Create a New Post</h1>
 
-<p>Share your thoughts, photos, videos and ideas with everyone.</p>
+<p>Share your thoughts with the Lumora community.</p>
 
 <form id="postForm">
 
-<label>Post Title</label>
+<textarea
 
-<input
-type="text"
-id="postTitle"
-placeholder="Give your post a title..."
+id="postContent"
+
+placeholder="What's on your mind?"
+
+rows="8"
+
 required>
 
-<label>What's on your mind?</label>
+</textarea>
 
-<textarea
-id="postContent"
-rows="6"
-placeholder="Write something amazing..."
-required></textarea>
+<button
 
-<label>Upload Image</label>
+type="submit"
 
-<input
-type="file"
-id="imageUpload"
-accept="image/*">
+class="primary">
 
-<div id="imagePreview"></div>
-
-<label>Upload Video</label>
-
-<input
-type="file"
-id="videoUpload"
-accept="video/*">
-
-<div id="videoPreview"></div>
-
-<label>Upload Music (Coming Soon)</label>
-
-<input
-type="file"
-accept="audio/*"
-disabled>
-
-<div class="post-buttons">
-
-<button type="reset" class="secondary">
-Clear
-</button>
-
-<button type="submit" class="primary">
 🚀 Publish Post
-</button>
 
-</div>
+</button>
 
 </form>
 
+<p id="postStatus"></p>
+
 </div>
 
-</section>
+</main>
 
-<footer>
-
-<p>© 2026 Lumora</p>
-
-<p>Discover • Learn • Connect • Grow</p>
-
-</footer>
-
-<script src="../script.js"></script>
+<script type="module" src="../js/posts.js"></script>
 
 </body>
 
