@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,26 +18,30 @@
 
 <nav class="navbar">
 
-<h1 class="logo">🌟 Lumora</h1>
+<div class="logo">
+🌟 Lumora
+</div>
 
 <ul class="nav-links">
 
 <li><a href="../index.html">Home</a></li>
 
-<li><a href="feed.html">Feed</a></li>
-
-<li><a href="create-post.html">Create Post</a></li>
-
-<li><a href="stories.html">Stories</a></li>
-
-<li><a href="messages.html">Messages</a></li>
+<li><a href="dashboard.html">Dashboard</a></li>
 
 <li><a href="profile.html">Profile</a></li>
 
+<li><a href="messages.html">Messages</a></li>
+
+<li><a href="stories.html">Stories</a></li>
+
 <li>
-<button onclick="logout()" class="logout-btn">
+
+<button id="logoutBtn" class="logout-btn">
+
 Logout
+
 </button>
+
 </li>
 
 </ul>
@@ -45,50 +50,110 @@ Logout
 
 </header>
 
-<section class="dashboard-page">
+<main class="dashboard">
 
-<div class="dashboard-header">
+<section class="welcome-card">
 
-<h1>Welcome Back 👋</h1>
+<h1>👋 Welcome to Lumora</h1>
 
 <p>
-Create, Discover, Learn and Grow with Lumora.
+Discover yourself. Learn new skills. Connect with people.
+Grow into your best self.
 </p>
+
+</section>
+
+<section class="quick-actions">
 
 <a href="create-post.html">
 
 <button class="primary">
 
-➕ Create New Post
+📝 Create Post
 
 </button>
 
 </a>
 
+<a href="feed.html">
+
+<button class="secondary">
+
+📰 View Feed
+
+</button>
+
+</a>
+
+</section>
+
+<section class="stats">
+
+<div class="stat-card">
+
+<h2>0</h2>
+
+<p>Posts</p>
+
 </div>
 
-<h2 class="feed-title">
+<div class="stat-card">
 
-🔥 Latest Posts
+<h2>0</h2>
 
-</h2>
+<p>Followers</p>
 
-<div id="postsContainer" class="posts-grid">
+</div>
 
-<div class="card">
-<h3>Welcome to Lumora!</h3>
-<p>Your social journey begins here. Soon you'll be able to share posts, like, comment, and connect with others.</p>
+<div class="stat-card">
+
+<h2>0</h2>
+
+<p>Following</p>
+
+</div>
+
+</section>
+
+<section class="feed-preview">
+
+<h2>🔥 Latest Posts</h2>
+
+<div id="postsContainer">
+
+<div class="post-card">
+
+<h3>Welcome to Lumora 🎉</h3>
+
+<p>
+
+This is where posts from the Lumora community will appear.
+
+Start by creating your very first post!
+
+</p>
+
 </div>
 
 </div>
 
 </section>
 
+</main>
+
 <footer>
 
-<p>© 2026 Lumora</p>
+<p>
 
-<p>Discover • Learn • Connect • Grow</p>
+© 2026 Lumora
+
+</p>
+
+<p>
+
+Discover • Learn • Connect • Grow
+
+</p>
 
 </footer>
 
