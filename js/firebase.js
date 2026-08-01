@@ -1,7 +1,14 @@
 // Firebase Configuration
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
 
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+
+// Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDrp55t4WNInqmxW7pI8GO6vlI3ufrEHtU",
   authDomain: "lumora-1136c.firebaseapp.com",
@@ -13,6 +20,69 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-// Export app
-export { app };
+// --------------------
+// SIGN UP
+// --------------------
+const signupForm = document.getElementById("signupForm");
+
+if (signupForm) {
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("signupEmail").value;
+    const password = document.getElementById("signupPassword").value;
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+
+      alert("🎉 Account created successfully!");
+
+      window.location.href = "dashboard.html";
+
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+}
+
+// --------------------
+// LOGIN
+// --------------------
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+
+      alert("✅ Login successful!");
+
+      window.location.href = "dashboard.html";
+
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+}
+
+// --------------------
+// LOGOUT
+// --------------------
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+
+    alert("Logged out!");
+
+    window.location.href = "../index.html";
+  });
+}
