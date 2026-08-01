@@ -1,88 +1,110 @@
-// Firebase Configuration
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
 
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+onAuthStateChanged,
+signOut
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 
-// Your Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDrp55t4WNInqmxW7pI8GO6vlI3ufrEHtU",
-  authDomain: "lumora-1136c.firebaseapp.com",
-  projectId: "lumora-1136c",
-  storageBucket: "lumora-1136c.firebasestorage.app",
-  messagingSenderId: "555831918720",
-  appId: "1:555831918720:web:5d1251846b43c92464e665"
+apiKey: "AIzaSyDrp55t4WNInqmxW7pI8GO6vlI3ufrEHtU",
+authDomain: "lumora-1136c.firebaseapp.com",
+projectId: "lumora-1136c",
+storageBucket: "lumora-1136c.firebasestorage.app",
+messagingSenderId: "555831918720",
+appId: "1:555831918720:web:5d1251846b43c92464e665"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 
-// --------------------
-// SIGN UP
-// --------------------
+/* ---------- SIGN UP ---------- */
+
 const signupForm = document.getElementById("signupForm");
 
-if (signupForm) {
-  signupForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+if(signupForm){
 
-    const email = document.getElementById("signupEmail").value;
-    const password = document.getElementById("signupPassword").value;
+signupForm.addEventListener("submit",(e)=>{
 
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
+e.preventDefault();
 
-      alert("🎉 Account created successfully!");
+const email=document.getElementById("signupEmail").value;
 
-      window.location.href = "dashboard.html";
+const password=document.getElementById("signupPassword").value;
 
-    } catch (error) {
-      alert(error.message);
-    }
-  });
+createUserWithEmailAndPassword(auth,email,password)
+
+.then(()=>{
+
+alert("✅ Account created successfully!");
+
+window.location.href="login.html";
+
+})
+
+.catch(error=>{
+
+alert(error.message);
+
+});
+
+});
+
 }
 
-// --------------------
-// LOGIN
-// --------------------
-const loginForm = document.getElementById("loginForm");
+/* ---------- LOGIN ---------- */
 
-if (loginForm) {
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+const loginForm=document.getElementById("loginForm");
 
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
+if(loginForm){
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
+loginForm.addEventListener("submit",(e)=>{
 
-      alert("✅ Login successful!");
+e.preventDefault();
 
-      window.location.href = "dashboard.html";
+const email=document.getElementById("loginEmail").value;
 
-    } catch (error) {
-      alert(error.message);
-    }
-  });
+const password=document.getElementById("loginPassword").value;
+
+signInWithEmailAndPassword(auth,email,password)
+
+.then(()=>{
+
+window.location.href="dashboard.html";
+
+})
+
+.catch(error=>{
+
+alert(error.message);
+
+});
+
+});
+
 }
 
-// --------------------
-// LOGOUT
-// --------------------
-const logoutBtn = document.getElementById("logoutBtn");
+/* ---------- CHECK LOGIN ---------- */
 
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", async () => {
-    await signOut(auth);
+onAuthStateChanged(auth,(user)=>{
 
-    alert("Logged out!");
+if(user){
 
-    window.location.href = "../index.html";
-  });
+console.log("Logged in:",user.email);
+
 }
+
+});
+
+window.logout=function(){
+
+signOut(auth).then(()=>{
+
+window.location.href="login.html";
+
+});
+
+};
