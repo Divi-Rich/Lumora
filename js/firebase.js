@@ -1,3 +1,7 @@
+// ===============================
+// Lumora Firebase Configuration
+// ===============================
+
 // Firebase Core
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
 
@@ -10,7 +14,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/12.17.0/firebas
 // Firebase Configuration
 const firebaseConfig = {
 
-    apiKey: "YOUR_API_KEY",
+    apiKey: "AIzaSyDrp55t4WNInqmxW7pI8GO6vlI3ufrEHtU",
 
     authDomain: "lumora-1136c.firebaseapp.com",
 
@@ -27,10 +31,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Services
+// Initialize Firebase Services
 const auth = getAuth(app);
-
 const db = getFirestore(app);
 
-// Export
+// Export Services
 export { app, auth, db };
