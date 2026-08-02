@@ -15,165 +15,39 @@
 
 <body>
 
-<header>
-
-<nav class="navbar">
+<header class="navbar">
 
 <h1 class="logo">🌟 Lumora</h1>
 
-<ul class="nav-links">
+<nav>
 
-<li><a href="../index.html">Home</a></li>
+<a href="../index.html">Home</a>
 
-<li><a href="dashboard.html">Dashboard</a></li>
+<a href="dashboard.html">Dashboard</a>
 
-<li><a href="reels.html">Reels</a></li>
+<a href="post.html">Create Post</a>
 
-<li><a href="create-post.html">Create</a></li>
-
-<li><a href="profile.html">Profile</a></li>
-
-</ul>
+<a href="profile.html">Profile</a>
 
 </nav>
 
 </header>
 
-<section class="feed">
+<main class="feed-container">
 
-<h1 class="feed-title">
+<h2>🔥 Latest Posts</h2>
 
-🔥 Today's Feed
+<div id="postsContainer">
 
-</h1>
+<div class="loading">
 
-<div class="feed-card">
-
-<div class="feed-user">
-
-<div class="avatar">👤</div>
-
-<div>
-
-<h3>Eduok Divine Richard</h3>
-
-<p>@divinerich • 2 mins ago</p>
+Loading posts...
 
 </div>
 
 </div>
 
-<p class="feed-text">
-
-🚀 Building Lumora one step at a time.
-
-Who else is learning to code today?
-
-</p>
-
-<img src="https://picsum.photos/700/400?random=1" alt="Post">
-
-<div class="feed-actions">
-
-<button>❤️ 324</button>
-
-<button>💬 81</button>
-
-<button>🔖 Save</button>
-
-<button>📤 Share</button>
-
-</div>
-
-</div>
-
-<div class="feed-card">
-
-<div class="feed-user">
-
-<div class="avatar">🎵</div>
-
-<div>
-
-<h3>Afrobeats Daily</h3>
-
-<p>@music • 18 mins ago</p>
-
-</div>
-
-</div>
-
-<p class="feed-text">
-
-🎵 Today's Top Song
-
-Listen and share with friends.
-
-</p>
-
-<audio controls>
-
-<source src="" type="audio/mpeg">
-
-</audio>
-
-<div class="feed-actions">
-
-<button>❤️ 2.3K</button>
-
-<button>💬 412</button>
-
-<button>🔖 Save</button>
-
-<button>📤 Share</button>
-
-</div>
-
-</div>
-
-<div class="feed-card">
-
-<div class="feed-user">
-
-<div class="avatar">🎥</div>
-
-<div>
-
-<h3>Lumora Official</h3>
-
-<p>@lumora • 1 hour ago</p>
-
-</div>
-
-</div>
-
-<p class="feed-text">
-
-Learn HTML in under 60 seconds.
-
-</p>
-
-<video controls>
-
-<source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-
-</video>
-
-<div class="feed-actions">
-
-<button>❤️ 5.7K</button>
-
-<button>💬 1.2K</button>
-
-<button>🔖 Save</button>
-
-<button>📤 Share</button>
-
-</div>
-
-</div>
-
-</section>
+</main>
 
 <footer>
 
@@ -183,7 +57,7 @@ Learn HTML in under 60 seconds.
 
 </footer>
 
-<script src="../script.js"></script>
+<script type="module" src="../js/feed.js"></script>
 
 </body>
 
