@@ -1,6 +1,6 @@
-// ===============================
+// ======================================
 // Lumora Firebase Configuration
-// ===============================
+// ======================================
 
 // Firebase Core
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
@@ -10,6 +10,9 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-aut
 
 // Firebase Firestore
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+
+// Firebase Storage
+import { getStorage } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-storage.js";
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -31,9 +34,15 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Firebase Services
+// Firebase Services
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 // Export Services
-export { app, auth, db };
+export {
+    app,
+    auth,
+    db,
+    storage
+};
