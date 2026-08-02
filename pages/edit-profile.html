@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Profile | Lumora</title>
+
+<link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+
+🌟 Lumora
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="dashboard.html">Home</a></li>
+
+<li><a href="feed.html">Feed</a></li>
+
+<li><a href="post.html">Create</a></li>
+
+<li><a href="messages.html">Messages</a></li>
+
+<li><a href="profile.html">Profile</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<main class="profile-page">
+
+<div class="profile-card">
+
+<h1>Edit Profile</h1>
+
+<p>Update your Lumora account.</p>
+
+<br>
+
+<div class="profile-picture">
+
+<img
+id="profilePreview"
+src="https://ui-avatars.com/api/?name=Lumora&background=2563eb&color=ffffff&size=200"
+alt="Profile">
+
+</div>
+
+<br>
+
+<input
+type="file"
+id="profileImage"
+accept="image/*">
+
+<br><br>
+
+<input
+type="text"
+id="fullName"
+placeholder="Full Name">
+
+<br>
+
+<input
+type="text"
+id="username"
+placeholder="Username">
+
+<br>
+
+<textarea
+id="bio"
+rows="5"
+placeholder="Tell everyone about yourself..."></textarea>
+
+<br>
+
+<button
+id="saveProfileBtn"
+class="primary">
+
+💾 Save Changes
+
+</button>
+
+<p id="status"></p>
+
+</div>
+
+</main>
+
+<footer>
+
+<p>
+
+© 2026 Lumora
+
+</p>
+
+</footer>
+
+<script type="module" src="../js/edit-profile.js"></script>
+
+</body>
+
+</html>
