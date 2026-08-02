@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Profile | Lumora</title>
+<title>My Profile | Lumora</title>
 
 <link rel="stylesheet" href="../style.css">
 
@@ -19,19 +19,23 @@
 
 <nav class="navbar">
 
-<h1 class="logo">🌟 Lumora</h1>
+<div class="logo">
+
+🌟 Lumora
+
+</div>
 
 <ul class="nav-links">
 
-<li><a href="../index.html">Home</a></li>
+<li><a href="dashboard.html">Home</a></li>
 
-<li><a href="dashboard.html">Dashboard</a></li>
+<li><a href="feed.html">Feed</a></li>
 
-<li><a href="reels.html">Reels</a></li>
+<li><a href="post.html">Create</a></li>
 
-<li><a href="#">Community</a></li>
+<li><a href="messages.html">Messages</a></li>
 
-<li><a href="#">Music</a></li>
+<li><a href="profile.html" class="active">Profile</a></li>
 
 </ul>
 
@@ -39,149 +43,138 @@
 
 </header>
 
-<section class="profile-page">
+<main class="profile-page">
+
+<div class="profile-card">
 
 <div class="profile-header">
 
 <div class="profile-picture">
-👤
+
+<img
+id="profileImage"
+src="https://ui-avatars.com/api/?name=Lumora&background=2563eb&color=ffffff&size=200"
+alt="Profile">
+
 </div>
 
-<h1>Eduok Divine Richard</h1>
+<div class="profile-info">
 
-<p>
-Dreamer • Builder • Founder of Lumora
+<h1 id="fullName">
+
+Loading...
+
+</h1>
+
+<p id="username">
+
+@loading
+
 </p>
 
-<button class="primary">
-Edit Profile
+<p id="bio">
+
+Welcome to Lumora 🚀
+
+</p>
+
+</div>
+
+<a href="settings.html">
+
+<button class="settings-btn">
+
+⚙️ Settings
+
+</button>
+
+</a>
+
+</div>
+
+<hr>
+
+<div class="profile-stats">
+
+<div>
+
+<h2 id="postsCount">
+
+0
+
+</h2>
+
+<p>Posts</p>
+
+</div>
+
+<div>
+
+<h2 id="followersCount">
+
+0
+
+</h2>
+
+<p>Followers</p>
+
+</div>
+
+<div>
+
+<h2 id="followingCount">
+
+0
+
+</h2>
+
+<p>Following</p>
+
+</div>
+
+</div>
+
+<button class="primary" id="editProfile">
+
+✏️ Edit Profile
+
 </button>
 
 </div>
 
-<div class="profile-grid">
+<section class="profile-posts">
 
-<div class="profile-card">
+<h2>
 
-<h2>🧠 Skills</h2>
+📝 My Posts
 
-<ul>
+</h2>
 
-<li>HTML</li>
+<div id="myPosts">
 
-<li>CSS</li>
+<p>
 
-<li>JavaScript</li>
+Loading posts...
 
-<li>UI Design</li>
-
-</ul>
-
-</div>
-
-<div class="profile-card">
-
-<h2>🎯 Goals</h2>
-
-<ul>
-
-<li>Build Lumora</li>
-
-<li>Become Full Stack Developer</li>
-
-<li>Launch Lumora App</li>
-
-<li>Help Millions of People</li>
-
-</ul>
-
-</div>
-
-<div class="profile-card">
-
-<h2>🏆 Achievements</h2>
-
-<ul>
-
-<li>⭐ Founder</li>
-
-<li>⭐ Website Developer</li>
-
-<li>⭐ First Dashboard</li>
-
-<li>⭐ Future CEO</li>
-
-</ul>
-
-</div>
-
-<div class="profile-card">
-
-<h2>🎵 Favourite Music</h2>
-
-<ul>
-
-<li>Afrobeats</li>
-
-<li>Hip-Hop</li>
-
-<li>R&B</li>
-
-<li>Gospel</li>
-
-</ul>
-
-</div>
-
-<div class="profile-card">
-
-<h2>📚 Learning</h2>
-
-<ul>
-
-<li>Frontend Development</li>
-
-<li>Backend Development</li>
-
-<li>Artificial Intelligence</li>
-
-<li>UI/UX Design</li>
-
-</ul>
-
-</div>
-
-<div class="profile-card">
-
-<h2>👥 Communities</h2>
-
-<ul>
-
-<li>Developers</li>
-
-<li>Students</li>
-
-<li>Entrepreneurs</li>
-
-<li>Music Lovers</li>
-
-</ul>
-
-</div>
+</p>
 
 </div>
 
 </section>
 
+</main>
+
 <footer>
 
-<p>© 2026 Lumora</p>
+<p>
 
-<p>Discover • Learn • Connect • Grow</p>
+© 2026 Lumora
+
+</p>
 
 </footer>
 
-<script src="../script.js"></script>
+<script type="module" src="../js/profile.js"></script>
 
 </body>
 
