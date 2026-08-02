@@ -1,57 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Post | Lumora</title>
 
-    <link rel="stylesheet" href="../style.css">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Post | Lumora</title>
+
+<link rel="stylesheet" href="../style.css">
+
 </head>
 
 <body>
 
-<header class="navbar">
+<header>
 
-    <h1 class="logo">🌟 Lumora</h1>
+<nav class="navbar">
 
-    <nav>
+<div class="logo">
 
-        <a href="../index.html">Home</a>
+🌟 Lumora
 
-        <a href="dashboard.html">Dashboard</a>
+</div>
 
-        <a href="feed.html">Feed</a>
+<ul class="nav-links">
 
-        <a href="profile.html">Profile</a>
+<li><a href="../index.html">Home</a></li>
 
-    </nav>
+<li><a href="dashboard.html">Dashboard</a></li>
+
+<li><a href="feed.html">Feed</a></li>
+
+<li><a href="profile.html">Profile</a></li>
+
+<li>
+
+<button onclick="window.location.href='login.html'" class="logout-btn">
+
+Logout
+
+</button>
+
+</li>
+
+</ul>
+
+</nav>
 
 </header>
 
-<div class="page-container">
+<main class="page-container">
 
-    <div class="post-card">
+<div class="post-card">
 
-        <h2>Create a New Post</h2>
+<h1>Create a Post</h1>
 
-        <p>Share your thoughts with the Lumora community.</p>
+<p>Share something with the Lumora community.</p>
 
-        <textarea
-            id="postContent"
-            placeholder="What's on your mind today?"
-            rows="8"></textarea>
+<textarea
 
-        <button id="publishBtn">
-            🚀 Publish Post
-        </button>
+id="postContent"
 
-        <p id="status"></p>
+placeholder="What's on your mind today?"
 
-    </div>
+rows="8"
+
+required>
+
+</textarea>
+
+<button
+
+id="publishBtn"
+
+class="primary">
+
+🚀 Publish Post
+
+</button>
+
+<p id="status"></p>
 
 </div>
+
+</main>
+
+<footer>
+
+<p>© 2026 Lumora</p>
+
+<p>Discover • Learn • Connect • Grow</p>
+
+</footer>
 
 <script type="module" src="../js/posts.js"></script>
 
 </body>
+
 </html>
