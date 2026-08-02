@@ -1,100 +1,96 @@
-// Import Firebase App
-import { app } from "./firebase.js";
+import { db } from "./firebase.js";
 
 import {
-    getFirestore,
-    collection,
-    query,
-    orderBy,
-    getDocs
+
+collection,
+
+query,
+
+orderBy,
+
+getDocs
+
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
-const db = getFirestore(app);
+const postsContainer=document.getElementById("postsContainer");
 
-const postsContainer = document.getElementById("postsContainer");
+async function loadPosts(){
 
-async function loadPosts() {
+postsContainer.innerHTML="<p>Loading...</p>";
 
-    postsContainer.innerHTML = "<p>Loading posts...</p>";
+try{
 
-    try {
+const q=query(
 
-        const postsQuery = query(
-            collection(db, "posts"),
-            orderBy("createdAt", "desc")
-        );
+collection(db,"posts"),
 
-        const snapshot = await getDocs(postsQuery);
+orderBy("createdAt","desc")
 
-        if (snapshot.empty) {
+);
 
-            postsContainer.innerHTML = `
-                <div class="post-card">
-                    <h3>No Posts Yet</h3>
-                    <p>Be the first person to post on Lumora!</p>
-                </div>
-            `;
+const snapshot=await getDocs(q);
 
-            return;
-        }
+if(snapshot.empty){
 
-        postsContainer.innerHTML = "";
+postsContainer.innerHTML=`
 
-        snapshot.forEach((doc) => {
+<div class="post-card">
 
-            const post = doc.data();
+<h2>No Posts Yet</h2>
 
-            const card = document.createElement("div");
+<p>Be the first to post on Lumora.</p>
 
-            card.className = "post-card";
+</div>
 
-            card.innerHTML = `
+`;
 
-                <div class="post-header">
+return;
 
-                    <h3>${post.email}</h3>
+}
 
-                </div>
+postsContainer.innerHTML="";
 
-                <p class="post-content">
+snapshot.forEach(doc=>{
 
-                    ${post.content}
+const post=doc.data();
 
-                </p>
+postsContainer.innerHTML+=`
 
-                <div class="post-footer">
+<div class="post-card">
 
-                    ❤️ ${post.likes || 0} Likes
+<h3>${post.email}</h3>
 
-                    &nbsp;&nbsp;
+<p>${post.content}</p>
 
-                    💬 ${post.comments || 0} Comments
+<div class="post-actions">
 
-                </div>
+<button>❤️ ${post.likes}</button>
 
-            `;
+<button>💬 ${post.comments}</button>
 
-            postsContainer.appendChild(card);
+</div>
 
-        });
+</div>
 
-    } catch (error) {
+`;
 
-        console.error(error);
+});
 
-        postsContainer.innerHTML = `
+}catch(error){
 
-            <div class="post-card">
+postsContainer.innerHTML=`
 
-                <h3>Error</h3>
+<div class="post-card">
 
-                <p>${error.message}</p>
+<h2>Error</h2>
 
-            </div>
+<p>${error.message}</p>
 
-        `;
+</div>
 
-    }
+`;
+
+}
 
 }
 
