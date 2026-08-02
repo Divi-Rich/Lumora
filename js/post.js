@@ -1,73 +1,83 @@
-// Import Firebase
-import { app } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 
 import {
-    getFirestore,
-    collection,
-    addDoc,
-    serverTimestamp
+
+collection,
+
+addDoc,
+
+serverTimestamp
+
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
-import {
-    getAuth
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
-
-const db = getFirestore(app);
-const auth = getAuth(app);
-
 const publishBtn = document.getElementById("publishBtn");
+
 const postContent = document.getElementById("postContent");
+
 const status = document.getElementById("status");
 
 publishBtn.addEventListener("click", async () => {
 
-    const content = postContent.value.trim();
+const text = postContent.value.trim();
 
-    if (content === "") {
-        status.style.color = "red";
-        status.textContent = "Please write something first.";
-        return;
-    }
+if(text===""){
 
-    const user = auth.currentUser;
+status.style.color="red";
 
-    if (!user) {
-        alert("Please login first.");
-        window.location.href = "login.html";
-        return;
-    }
+status.textContent="Please write something.";
 
-    try {
+return;
 
-        await addDoc(collection(db, "posts"), {
+}
 
-            uid: user.uid,
-            email: user.email,
-            content: content,
-            createdAt: serverTimestamp(),
-            likes: 0,
-            comments: 0
+const user = auth.currentUser;
 
-        });
+if(!user){
 
-        status.style.color = "#00ff88";
-        status.textContent = "✅ Post published successfully!";
+alert("Please login.");
 
-        postContent.value = "";
+window.location.href="login.html";
 
-        setTimeout(() => {
+return;
 
-            window.location.href = "feed.html";
+}
 
-        }, 1200);
+try{
 
-    } catch (error) {
+await addDoc(collection(db,"posts"),{
 
-        console.error(error);
+uid:user.uid,
 
-        status.style.color = "red";
-        status.textContent = error.message;
+email:user.email,
 
-    }
+content:text,
+
+likes:0,
+
+comments:0,
+
+createdAt:serverTimestamp()
+
+});
+
+status.style.color="#00ff88";
+
+status.textContent="✅ Post Published!";
+
+postContent.value="";
+
+setTimeout(()=>{
+
+window.location.href="feed.html";
+
+},1000);
+
+}catch(error){
+
+status.style.color="red";
+
+status.textContent=error.message;
+
+}
 
 });
