@@ -66,4 +66,58 @@ onAuthStateChanged(auth, async (user) => {
 
 });
 
-// Preview
+// Preview Selected Image
+profileImage.addEventListener("change", () => {
+
+    const file = profileImage.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        profilePreview.src = e.target.result;
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+// Save Profile
+saveBtn.addEventListener("click", async () => {
+
+    try {
+
+        await updateDoc(
+
+            doc(db, "users", currentUser.uid),
+
+            {
+
+                fullName: fullName.value,
+
+                username: username.value.toLowerCase(),
+
+                bio: bio.value
+
+            }
+
+        );
+
+        status.style.color = "#00ff88";
+
+        status.textContent = "✅ Profile Updated Successfully";
+
+    }
+
+    catch(error){
+
+        status.style.color = "red";
+
+        status.textContent = error.message;
+
+    }
+
+});
