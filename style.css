@@ -375,3 +375,263 @@ textarea{
     width:100%;
 
 }
+
+/* ===========================================
+   STORIES
+=========================================== */
+
+.stories{
+
+    margin-bottom:30px;
+
+}
+
+.stories h3{
+
+    margin-bottom:15px;
+
+}
+
+.story-container{
+
+    display:flex;
+
+    gap:15px;
+
+    overflow-x:auto;
+
+    padding-bottom:10px;
+
+}
+
+.story-container::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.story{
+
+    min-width:75px;
+
+    height:75px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:linear-gradient(45deg,var(--pink),var(--primary),var(--secondary));
+
+    border:3px solid rgba(255,255,255,.2);
+
+    transition:.3s;
+
+}
+
+.story:hover{
+
+    transform:scale(1.08);
+
+}
+
+/* ===========================================
+   POSTS
+=========================================== */
+
+.feed-preview{
+
+    margin-top:30px;
+
+}
+
+.post-card{
+
+    background:var(--card);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.post-card h3{
+
+    margin-bottom:10px;
+
+}
+
+.post-card p{
+
+    line-height:1.6;
+
+}
+
+.post-image{
+
+    width:100%;
+
+    border-radius:18px;
+
+    margin-top:15px;
+
+}
+
+.post-actions{
+
+    display:flex;
+
+    justify-content:space-around;
+
+    margin-top:20px;
+
+    font-size:22px;
+
+}
+
+.post-actions span{
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.post-actions span:hover{
+
+    transform:scale(1.2);
+
+}
+
+/* ===========================================
+   BOTTOM NAVIGATION
+=========================================== */
+
+.bottom-nav{
+
+    position:fixed;
+
+    bottom:15px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:95%;
+
+    max-width:500px;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    padding:15px;
+
+    background:rgba(17,23,47,.85);
+
+    backdrop-filter:blur(25px);
+
+    border:1px solid var(--border);
+
+    border-radius:25px;
+
+    box-shadow:var(--shadow);
+
+    z-index:999;
+
+}
+
+.bottom-nav a{
+
+    font-size:26px;
+
+    transition:.3s;
+
+}
+
+.bottom-nav a:hover{
+
+    color:var(--secondary);
+
+    transform:translateY(-5px);
+
+}
+
+/* ===========================================
+   FOOTER
+=========================================== */
+
+footer{
+
+    text-align:center;
+
+    padding:30px;
+
+    opacity:.7;
+
+    margin-bottom:100px;
+
+}
+
+footer p{
+
+    margin:5px 0;
+
+}
+
+/* ===========================================
+   MOBILE
+=========================================== */
+
+@media(max-width:768px){
+
+.quick-actions{
+
+    flex-direction:column;
+
+}
+
+.login-box{
+
+    width:95%;
+
+}
+
+.logo{
+
+    font-size:22px;
+
+}
+
+.top-icons a{
+
+    font-size:20px;
+
+}
+
+.bottom-nav{
+
+    width:96%;
+
+}
+
+}
