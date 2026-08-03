@@ -20,9 +20,7 @@
 <nav class="navbar">
 
 <div class="logo">
-
 🌟 Lumora
-
 </div>
 
 <ul class="nav-links">
@@ -36,13 +34,9 @@
 <li><a href="profile.html">Profile</a></li>
 
 <li>
-
 <button onclick="window.location.href='login.html'" class="logout-btn">
-
 Logout
-
 </button>
-
 </li>
 
 </ul>
@@ -53,33 +47,38 @@ Logout
 
 <main class="page-container">
 
-<div class="post-card">
+<div class="post-card glass-card">
 
 <h1>Create a Post</h1>
 
-<p>Share something with the Lumora community.</p>
+<p>Share something amazing with the Lumora community.</p>
+
+<form id="postForm">
 
 <textarea
-
-id="postContent"
-
+id="caption"
 placeholder="What's on your mind today?"
+rows="6"
+required></textarea>
 
-rows="8"
+<input
+type="file"
+id="postImage"
+accept="image/*">
 
-required>
-
-</textarea>
+<img
+id="imagePreview"
+style="display:none;width:100%;margin-top:15px;border-radius:15px;">
 
 <button
-
-id="publishBtn"
-
+type="submit"
 class="primary">
 
 🚀 Publish Post
 
 </button>
+
+</form>
 
 <p id="status"></p>
 
@@ -95,7 +94,28 @@ class="primary">
 
 </footer>
 
-<script type="module" src="../js/posts.js"></script>
+<script type="module" src="../js/post.js"></script>
+
+<script>
+
+const imageInput = document.getElementById("postImage");
+const preview = document.getElementById("imagePreview");
+
+imageInput.addEventListener("change", () => {
+
+    const file = imageInput.files[0];
+
+    if(file){
+
+        preview.src = URL.createObjectURL(file);
+
+        preview.style.display = "block";
+
+    }
+
+});
+
+</script>
 
 </body>
 
