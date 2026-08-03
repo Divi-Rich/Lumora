@@ -143,3 +143,235 @@ textarea{
     color:white;
 
 }
+
+/* ===========================================
+   LOGIN & SIGNUP
+=========================================== */
+
+.login-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    padding:20px;
+
+}
+
+.login-box{
+
+    width:100%;
+
+    max-width:420px;
+
+    padding:30px;
+
+    background:var(--card);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid var(--border);
+
+    border-radius:25px;
+
+    box-shadow:var(--shadow);
+
+    text-align:center;
+
+}
+
+.login-box h1{
+
+    font-size:38px;
+
+    margin-bottom:10px;
+
+}
+
+.login-box h2{
+
+    margin-bottom:10px;
+
+}
+
+.login-box p{
+
+    opacity:.8;
+
+    margin-bottom:20px;
+
+}
+
+.password-box{
+
+    position:relative;
+
+}
+
+#togglePassword{
+
+    position:absolute;
+
+    right:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    font-size:20px;
+
+}
+
+.bottom-text{
+
+    margin-top:20px;
+
+}
+
+.bottom-text a{
+
+    color:var(--secondary);
+
+    font-weight:bold;
+
+}
+
+/* ===========================================
+   HEADER
+=========================================== */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 20px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:rgba(9,11,26,.75);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.logo{
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+.top-icons{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.top-icons a{
+
+    font-size:24px;
+
+    transition:.3s;
+
+}
+
+.top-icons a:hover{
+
+    transform:scale(1.15);
+
+}
+
+.logout-btn{
+
+    background:var(--danger);
+
+    color:white;
+
+    border:none;
+
+    padding:10px 15px;
+
+    border-radius:10px;
+
+}
+
+/* ===========================================
+   DASHBOARD
+=========================================== */
+
+.dashboard{
+
+    padding:20px;
+
+    padding-bottom:90px;
+
+}
+
+.search-box{
+
+    margin:20px 0;
+
+}
+
+.search-box input{
+
+    background:rgba(255,255,255,.06);
+
+}
+
+.welcome-card{
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+}
+
+.welcome-card h2{
+
+    margin-bottom:10px;
+
+}
+
+.quick-actions{
+
+    display:flex;
+
+    gap:15px;
+
+    margin:25px 0;
+
+}
+
+.quick-actions a{
+
+    flex:1;
+
+}
+
+.quick-actions button{
+
+    width:100%;
+
+}
