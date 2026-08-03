@@ -14,62 +14,75 @@
 
 <body>
 
-<header>
-
-<nav class="navbar">
+<header class="topbar">
 
 <div class="logo">
 🌟 Lumora
 </div>
 
-<ul class="nav-links">
+<div class="top-icons">
 
-<li><a href="../index.html">Home</a></li>
+<a href="notifications.html">🔔</a>
 
-<li><a href="dashboard.html">Dashboard</a></li>
+<a href="profile.html">👤</a>
 
-<li><a href="profile.html">Profile</a></li>
-
-<li><a href="messages.html">Messages</a></li>
-
-<li><a href="stories.html">Stories</a></li>
-
-<li>
-
-<button id="logoutBtn" class="logout-btn">
-
-Logout
-
-</button>
-
-</li>
-
-</ul>
-
-</nav>
+</div>
 
 </header>
 
 <main class="dashboard">
 
-<section class="welcome-card">
+<div class="search-box">
 
-<h1>👋 Welcome to Lumora</h1>
+<input
+type="text"
+placeholder="🔍 Search Lumora">
+
+</div>
+
+<section class="welcome-card glass-card">
+
+<h2 id="welcomeUser">
+
+👋 Welcome!
+
+</h2>
 
 <p>
-Discover yourself. Learn new skills. Connect with people.
-Grow into your best self.
+
+Discover • Learn • Connect • Grow
+
 </p>
+
+</section>
+
+<section class="stories">
+
+<h3>Stories</h3>
+
+<div class="story-container">
+
+<div class="story">➕</div>
+
+<div class="story"></div>
+
+<div class="story"></div>
+
+<div class="story"></div>
+
+<div class="story"></div>
+
+</div>
 
 </section>
 
 <section class="quick-actions">
 
-<a href="create-post.html">
+<a href="post.html">
 
 <button class="primary">
 
-📝 Create Post
+➕ Create Post
 
 </button>
 
@@ -79,39 +92,11 @@ Grow into your best self.
 
 <button class="secondary">
 
-📰 View Feed
+📰 Feed
 
 </button>
 
 </a>
-
-</section>
-
-<section class="stats">
-
-<div class="stat-card">
-
-<h2>0</h2>
-
-<p>Posts</p>
-
-</div>
-
-<div class="stat-card">
-
-<h2>0</h2>
-
-<p>Followers</p>
-
-</div>
-
-<div class="stat-card">
-
-<h2>0</h2>
-
-<p>Following</p>
-
-</div>
 
 </section>
 
@@ -121,43 +106,27 @@ Grow into your best self.
 
 <div id="postsContainer">
 
-<div class="post-card">
-
-<h3>Welcome to Lumora 🎉</h3>
-
-<p>
-
-This is where posts from the Lumora community will appear.
-
-Start by creating your very first post!
-
-</p>
-
-</div>
-
 </div>
 
 </section>
 
 </main>
 
-<footer>
+<nav class="bottom-nav">
 
-<p>
+<a href="dashboard.html">🏠</a>
 
-© 2026 Lumora
+<a href="feed.html">🔍</a>
 
-</p>
+<a href="post.html">➕</a>
 
-<p>
+<a href="messages.html">💬</a>
 
-Discover • Learn • Connect • Grow
+<a href="profile.html">👤</a>
 
-</p>
+</nav>
 
-</footer>
-
-<script type="module" src="../js/firebase.js"></script>
+<script type="module" src="../js/dashboard.js"></script>
 
 </body>
 
