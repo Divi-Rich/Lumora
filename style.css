@@ -72,3 +72,74 @@ button{
     transition:.3s;
 
 }
+
+.glass-card{
+
+    background:var(--card);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.primary{
+
+    background:linear-gradient(45deg,var(--primary),var(--pink));
+
+    color:white;
+
+    border:none;
+
+    padding:14px 22px;
+
+    border-radius:14px;
+
+    font-weight:bold;
+
+}
+
+.primary:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.secondary{
+
+    background:linear-gradient(45deg,var(--secondary),var(--primary));
+
+    color:white;
+
+    border:none;
+
+    padding:14px 22px;
+
+    border-radius:14px;
+
+}
+
+input,
+textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    margin:10px 0;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+}
