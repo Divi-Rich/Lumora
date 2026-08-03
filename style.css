@@ -1,251 +1,74 @@
-.topbar{
+/* ===========================================
+   Lumora - Main Stylesheet
+   Version: 2.0
+   Theme: Gen Z Glassmorphism
+=========================================== */
 
-display:flex;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-justify-content:space-between;
+:root{
 
-align-items:center;
+    --bg:#090b1a;
+    --bg2:#12162b;
 
-padding:15px 20px;
+    --card:rgba(255,255,255,.08);
 
-background:#141625;
+    --white:#ffffff;
 
-color:white;
+    --text:#e8ecff;
 
-position:sticky;
+    --primary:#7c3aed;
 
-top:0;
+    --secondary:#00d4ff;
 
-z-index:100;
+    --pink:#ff3ea5;
+
+    --danger:#ff4d6d;
+
+    --success:#00d084;
+
+    --border:rgba(255,255,255,.12);
+
+    --shadow:0 10px 30px rgba(0,0,0,.35);
 
 }
 
-.logo{
+body{
 
-font-size:24px;
+    font-family:Arial,Helvetica,sans-serif;
 
-font-weight:bold;
+    background:linear-gradient(135deg,#090b1a,#11172f,#1b2140);
 
-}
+    color:var(--text);
 
-.top-icons{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
+    min-height:100vh;
 
 }
 
-.top-icons a{
+a{
 
-text-decoration:none;
+    color:inherit;
 
-font-size:22px;
-
-}
-
-.logout-btn{
-
-padding:8px 15px;
-
-border:none;
-
-border-radius:8px;
-
-background:#ff4b5c;
-
-color:white;
-
-cursor:pointer;
+    text-decoration:none;
 
 }
 
-.dashboard{
+img{
 
-padding:20px;
+    max-width:100%;
 
-}
-
-.search-box input{
-
-width:100%;
-
-padding:12px;
-
-border-radius:12px;
-
-border:none;
-
-outline:none;
-
-margin-bottom:20px;
-
-font-size:16px;
+    display:block;
 
 }
 
-.welcome-card{
+button{
 
-padding:20px;
+    cursor:pointer;
 
-border-radius:15px;
-
-background:#1d2033;
-
-color:white;
-
-margin-bottom:20px;
-
-}
-
-.story-container{
-
-display:flex;
-
-gap:12px;
-
-overflow-x:auto;
-
-margin:15px 0;
-
-}
-
-.story{
-
-min-width:70px;
-
-height:70px;
-
-border-radius:50%;
-
-background:linear-gradient(45deg,#ff4b91,#7c3aed,#00d4ff);
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:26px;
-
-color:white;
-
-}
-
-.quick-actions{
-
-display:flex;
-
-gap:15px;
-
-margin:25px 0;
-
-}
-
-.primary{
-
-flex:1;
-
-padding:15px;
-
-border:none;
-
-border-radius:12px;
-
-background:#7c3aed;
-
-color:white;
-
-font-size:16px;
-
-cursor:pointer;
-
-}
-
-.secondary{
-
-flex:1;
-
-padding:15px;
-
-border:none;
-
-border-radius:12px;
-
-background:#00bcd4;
-
-color:white;
-
-font-size:16px;
-
-cursor:pointer;
-
-}
-
-.post-card{
-
-background:#1d2033;
-
-color:white;
-
-padding:18px;
-
-border-radius:15px;
-
-margin-bottom:20px;
-
-}
-
-.post-image{
-
-width:100%;
-
-border-radius:12px;
-
-margin-top:12px;
-
-}
-
-.post-actions{
-
-display:flex;
-
-gap:25px;
-
-margin-top:15px;
-
-font-size:18px;
-
-}
-
-.bottom-nav{
-
-position:fixed;
-
-bottom:0;
-
-left:0;
-
-width:100%;
-
-display:flex;
-
-justify-content:space-around;
-
-background:#141625;
-
-padding:15px 0;
-
-}
-
-.bottom-nav a{
-
-color:white;
-
-text-decoration:none;
-
-font-size:24px;
+    transition:.3s;
 
 }
