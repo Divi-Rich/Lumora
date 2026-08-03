@@ -634,4 +634,148 @@ footer p{
 
 }
 
+/* ===========================================
+   ANIMATIONS
+=========================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes glow{
+
+    0%{
+
+        box-shadow:0 0 10px rgba(124,58,237,.4);
+
+    }
+
+    50%{
+
+        box-shadow:0 0 30px rgba(0,212,255,.8);
+
+    }
+
+    100%{
+
+        box-shadow:0 0 10px rgba(255,62,165,.5);
+
+    }
+
+}
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.glass-card,
+.login-box,
+.post-card,
+.story{
+
+    animation:fadeUp .7s ease;
+
+}
+
+.story{
+
+    animation:float 3s ease-in-out infinite;
+
+}
+
+.primary:hover,
+.secondary:hover{
+
+    animation:glow 1s infinite;
+
+    transform:translateY(-3px);
+
+}
+
+/* ===========================================
+   SCROLLBAR
+=========================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#11172f;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(var(--primary),var(--secondary));
+
+    border-radius:20px;
+
+}
+
+/* ===========================================
+   SELECTION
+=========================================== */
+
+::selection{
+
+    background:var(--pink);
+
+    color:white;
+
+}
+
+/* ===========================================
+   LINKS
+=========================================== */
+
+a{
+
+    transition:.3s;
+
+}
+
+a:hover{
+
+    color:var(--secondary);
+
+}
+
 }
