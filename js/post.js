@@ -1,83 +1,63 @@
 import { auth, db } from "./firebase.js";
+import { uploadImage } from "./cloudinary.js";
 
 import {
-
-collection,
-
-addDoc,
-
-serverTimestamp
-
+    collection,
+    addDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
-const publishBtn = document.getElementById("publishBtn");
+const postForm = document.getElementById("postForm");
+const caption = document.getElementById("caption");
+const image = document.getElementById("postImage");
 
-const postContent = document.getElementById("postContent");
+postForm.addEventListener("submit", async (e) => {
 
-const status = document.getElementById("status");
+    e.preventDefault();
 
-publishBtn.addEventListener("click", async () => {
+    try {
 
-const text = postContent.value.trim();
+        const user = auth.currentUser;
 
-if(text===""){
+        if (!user) {
+            alert("Please login first.");
+            return;
+        }
 
-status.style.color="red";
+        let imageUrl = "";
 
-status.textContent="Please write something.";
+        if (image.files.length > 0) {
 
-return;
+            imageUrl = await uploadImage(image.files[0]);
 
-}
+        }
 
-const user = auth.currentUser;
+        await addDoc(collection(db, "posts"), {
 
-if(!user){
+            uid: user.uid,
 
-alert("Please login.");
+            caption: caption.value,
 
-window.location.href="login.html";
+            image: imageUrl,
 
-return;
+            likes: 0,
 
-}
+            comments: 0,
 
-try{
+            createdAt: serverTimestamp()
 
-await addDoc(collection(db,"posts"),{
+        });
 
-uid:user.uid,
+        alert("🎉 Post uploaded successfully!");
 
-email:user.email,
+        postForm.reset();
 
-content:text,
+    } catch (error) {
 
-likes:0,
+        console.error(error);
 
-comments:0,
+        alert(error.message);
 
-createdAt:serverTimestamp()
-
-});
-
-status.style.color="#00ff88";
-
-status.textContent="✅ Post Published!";
-
-postContent.value="";
-
-setTimeout(()=>{
-
-window.location.href="feed.html";
-
-},1000);
-
-}catch(error){
-
-status.style.color="red";
-
-status.textContent=error.message;
-
-}
+    }
 
 });
