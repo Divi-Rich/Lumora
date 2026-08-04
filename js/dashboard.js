@@ -101,7 +101,7 @@ async function loadPosts() {
 
                     </span>
 
-                </div>
+                ${auth.currentUser && auth.currentUser.uid === post.uid ? `
 
 <div class="post-owner-actions">
 
@@ -114,6 +114,8 @@ async function loadPosts() {
     </button>
 
 </div>
+
+` : ""}
 
                 <div
                     class="comments-box"
