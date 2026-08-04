@@ -9,6 +9,12 @@
 
 <title>Messages | Lumora</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="../style.css">
 
 </head>
@@ -23,7 +29,9 @@
 
 <ul class="nav-links">
 
-<li><a href="../index.html">Home</a></li>
+<li><a href="../index.html">🏠 Home</a></li>
+
+<li><a href="dashboard.html">Dashboard</a></li>
 
 <li><a href="feed.html">Feed</a></li>
 
@@ -31,7 +39,7 @@
 
 <li><a href="reels.html">Reels</a></li>
 
-<li><a href="messages.html">Messages</a></li>
+<li><a href="messages.html" class="active">Messages</a></li>
 
 <li><a href="profile.html">Profile</a></li>
 
@@ -51,11 +59,16 @@
 
 <div class="chat-container">
 
+<!-- LEFT SIDE -->
+
 <div class="chat-list">
 
-<input type="text" placeholder="🔍 Search conversation">
+<input
+type="text"
+id="searchUser"
+placeholder="🔍 Search conversation">
 
-<div class="chat-user">
+<div class="chat-user active-user">
 
 <div class="avatar">👨🏽</div>
 
@@ -63,7 +76,7 @@
 
 <h3>David</h3>
 
-<p>Hey, how are you?</p>
+<p>🟢 Online</p>
 
 </div>
 
@@ -77,7 +90,7 @@
 
 <h3>Sarah</h3>
 
-<p>Let's study together.</p>
+<p>Last seen 5 mins ago</p>
 
 </div>
 
@@ -91,25 +104,41 @@
 
 <h3>Lumora AI</h3>
 
-<p>Your learning plan is ready.</p>
+<p>Ask me anything...</p>
 
 </div>
 
 </div>
 
 </div>
+
+<!-- RIGHT SIDE -->
 
 <div class="chat-box">
 
 <div class="chat-header">
 
-<h2>David</h2>
+<div>
 
-<p>🟢 Online</p>
+<h2 id="chatName">
+
+David
+
+</h2>
+
+<p id="chatStatus">
+
+🟢 Online
+
+</p>
 
 </div>
 
-<div class="chat-messages">
+</div>
+
+<div
+class="chat-messages"
+id="chatMessages">
 
 <div class="message received">
 
@@ -125,7 +154,7 @@ I'm building Lumora 🚀
 
 <div class="message received">
 
-That's awesome!
+That's awesome 🔥
 
 </div>
 
@@ -133,11 +162,16 @@ That's awesome!
 
 <div class="chat-input">
 
-<input type="text" placeholder="Type a message...">
+<input
+type="text"
+id="messageInput"
+placeholder="Type a message...">
 
-<button class="primary">
+<button
+id="sendBtn"
+class="primary">
 
-Send
+📤 Send
 
 </button>
 
@@ -151,13 +185,21 @@ Send
 
 <footer>
 
-<p>© 2026 Lumora</p>
+<p>
 
-<p>Discover • Learn • Connect • Grow</p>
+© 2026 Lumora
+
+</p>
+
+<p>
+
+Discover • Learn • Connect • Grow
+
+</p>
 
 </footer>
 
-<script src="../script.js"></script>
+<script type="module" src="../js/messages.js"></script>
 
 </body>
 
