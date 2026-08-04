@@ -317,6 +317,52 @@ textarea{
 }
 
 /* ===========================================
+   NAVBAR
+=========================================== */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 20px;
+    background:rgba(9,11,26,.75);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+}
+
+.nav-links{
+    display:flex;
+    gap:20px;
+    list-style:none;
+    align-items:center;
+}
+
+.nav-links a{
+    color:var(--text);
+    font-weight:500;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--secondary);
+}
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:12px;
+    }
+
+}
+
+/* ===========================================
    DASHBOARD
 =========================================== */
 
