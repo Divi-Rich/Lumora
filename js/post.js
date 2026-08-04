@@ -3,8 +3,15 @@ import { uploadImage } from "./cloudinary.js";
 
 import {
     collection,
-    addDoc,
-    serverTimestamp
+    getDocs,
+    orderBy,
+    query,
+    doc,
+    getDoc,
+    updateDoc,
+    arrayUnion,
+    arrayRemove,
+    increment
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const postForm = document.getElementById("postForm");
