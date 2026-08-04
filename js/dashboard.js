@@ -353,13 +353,22 @@ window.addComment = async function(postId){
 
 window.editPost = async function(postId){
 
-    const postRef = doc(db, "posts", postId);
+    const user = auth.currentUser;
+
+    if(!user) return;
+
+    const postRef = doc(db,"posts",postId);
 
     const snap = await getDoc(postRef);
 
     if(!snap.exists()) return;
 
     const post = snap.data();
+
+    if(post.uid !== user.uid){
+        alert("You can only edit your own posts.");
+        return;
+    }
 
     const newCaption = prompt("Edit your caption:", post.caption);
 
