@@ -1,10 +1,11 @@
-import { auth, db } from "./firebase.js";
-
 import {
     collection,
     getDocs,
     orderBy,
-    query
+    query,
+    doc,
+    updateDoc,
+    increment
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 import {
