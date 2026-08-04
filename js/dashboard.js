@@ -345,3 +345,17 @@ window.addComment = async function(postId){
     loadPosts();
 
 };
+
+window.editPost = async function(postId){
+    alert("Edit feature coming next!");
+};
+
+window.deletePost = async function(postId){
+    const confirmDelete = confirm("Delete this post?");
+
+    if(!confirmDelete) return;
+
+    await deleteDoc(doc(db, "posts", postId));
+
+    loadPosts();
+};
