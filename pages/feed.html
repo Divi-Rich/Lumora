@@ -7,7 +7,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lumora Feed</title>
+<title>Feed | Lumora</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../style.css">
 
@@ -15,47 +21,55 @@
 
 <body>
 
-<header class="navbar">
+<header class="topbar">
 
-<h1 class="logo">🌟 Lumora</h1>
+<div class="logo">
 
-<nav>
+🌟 Lumora
 
-<a href="../index.html">Home</a>
+</div>
 
-<a href="dashboard.html">Dashboard</a>
+<div class="top-icons">
 
-<a href="post.html">Create Post</a>
+<a href="notifications.html">🔔</a>
 
-<a href="profile.html">Profile</a>
+<a href="messages.html">💬</a>
 
-</nav>
+<a href="profile.html">👤</a>
+
+</div>
 
 </header>
 
-<main class="feed-container">
+<main class="dashboard">
 
-<h2>🔥 Latest Posts</h2>
+<section class="feed-preview">
 
-<div id="postsContainer">
+<h2>🔥 Community Feed</h2>
 
-<div class="loading">
+<div id="feedContainer">
 
-Loading posts...
-
-</div>
+<p>Loading posts...</p>
 
 </div>
+
+</section>
 
 </main>
 
-<footer>
+<nav class="bottom-nav">
 
-<p>© 2026 Lumora</p>
+<a href="dashboard.html">🏠</a>
 
-<p>Discover • Learn • Connect • Grow</p>
+<a href="feed.html">📰</a>
 
-</footer>
+<a href="post.html">➕</a>
+
+<a href="messages.html">💬</a>
+
+<a href="profile.html">👤</a>
+
+</nav>
 
 <script type="module" src="../js/feed.js"></script>
 
