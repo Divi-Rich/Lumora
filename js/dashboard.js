@@ -184,4 +184,152 @@ window.likePost = async function(postId){
                 likedBy: arrayRemove(user.uid)
             });
 
+        }else{
+
+            await updateDoc(postRef,{
+                likes: increment(1),
+                likedBy: arrayUnion(user.uid)
+            });
+
         }
+
+        loadPosts();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+};
+
+
+// ===============================
+// OPEN / CLOSE COMMENTS
+// ===============================
+
+window.toggleComments = async function(postId){
+
+    const box = document.getElementById(`comments-${postId}`);
+
+    if(box.style.display === "none"){
+
+        box.style.display = "block";
+
+        loadComments(postId);
+
+    }else{
+
+        box.style.display = "none";
+
+    }
+
+};
+
+
+// ===============================
+// LOAD COMMENTS
+// ===============================
+
+async function loadComments(postId){
+
+    const container =
+        document.getElementById(`comments-list-${postId}`);
+
+    container.innerHTML = "Loading...";
+
+    const q = query(
+        collection(db,"posts",postId,"comments"),
+        orderBy("createdAt","asc")
+    );
+
+    const snap = await getDocs(q);
+
+    container.innerHTML = "";
+
+    if(snap.empty){
+
+        container.innerHTML = "<p>No comments yet.</p>";
+
+        return;
+
+    }
+
+    snap.forEach(commentDoc=>{
+
+        const comment = commentDoc.data();
+
+        container.innerHTML += `
+            <div class="comment">
+                <b>${comment.username}</b>
+                <p>${comment.text}</p>
+            </div>
+        `;
+
+    });
+
+}
+
+
+// ===============================
+// ADD COMMENT
+// ===============================
+
+window.addComment = async function(postId){
+
+    const input =
+        document.getElementById(`comment-input-${postId}`);
+
+    const text = input.value.trim();
+
+    if(text === "") return;
+
+    const user = auth.currentUser;
+
+    if(!user){
+
+        alert("Please login.");
+
+        return;
+
+    }
+
+    await addDoc(
+
+        collection(db,"posts",postId,"comments"),
+
+        {
+
+            uid:user.uid,
+
+            username:user.displayName || "Lumorian",
+
+            text:text,
+
+            createdAt:serverTimestamp()
+
+        }
+
+    );
+
+    await updateDoc(
+
+        doc(db,"posts",postId),
+
+        {
+
+            comments:increment(1)
+
+        }
+
+    );
+
+    input.value = "";
+
+    loadComments(postId);
+
+    loadPosts();
+
+};
