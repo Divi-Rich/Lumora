@@ -114,3 +114,27 @@ logoutBtn.addEventListener("click", async () => {
     window.location.href = "login.html";
 
 });
+
+window.likePost = async function(postId){
+
+    try{
+
+        const postRef = doc(db, "posts", postId);
+
+        await updateDoc(postRef, {
+
+            likes: increment(1)
+
+        });
+
+        loadPosts();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert("Failed to like post.");
+
+    }
+
+}
