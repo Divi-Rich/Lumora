@@ -1,31 +1,25 @@
 import { auth, db } from "./firebase.js";
 
 import {
-    doc,
-    getDoc,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+
+import {
     collection,
     query,
     where,
     getDocs
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
-import {
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
-
-// HTML Elements
-const fullName = document.getElementById("fullName");
-const username = document.getElementById("username");
-const bio = document.getElementById("bio");
-const profileImage = document.getElementById("profileImage");
-
-const followersCount = document.getElementById("followersCount");
-const followingCount = document.getElementById("followingCount");
-const postsCount = document.getElementById("postsCount");
-
+const profileName = document.getElementById("profileName");
+const profileEmail = document.getElementById("profileEmail");
+const profilePhoto = document.getElementById("profilePhoto");
+const postCount = document.getElementById("postCount");
 const myPosts = document.getElementById("myPosts");
+const logoutBtn = document.getElementById("logoutBtn");
+const editProfileBtn = document.getElementById("editProfileBtn");
 
-// Check if user is logged in
 onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
@@ -35,91 +29,101 @@ onAuthStateChanged(auth, async (user) => {
 
     }
 
+    profileName.textContent = user.displayName || "Lumora User";
+    profileEmail.textContent = user.email;
+
+    if (user.photoURL) {
+
+        profilePhoto.src = user.photoURL;
+
+    }
+
+    loadMyPosts(user.uid);
+
+});
+
+async function loadMyPosts(uid) {
+
     try {
 
-        // Load Profile
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
-
-        if (userSnap.exists()) {
-
-            const data = userSnap.data();
-
-            fullName.textContent = data.fullName || "Lumora User";
-
-            username.textContent = "@" + (data.username || "user");
-
-            bio.textContent = data.bio || "Welcome to Lumora.";
-
-            followersCount.textContent = data.followers || 0;
-
-            followingCount.textContent = data.following || 0;
-
-            if (data.profilePicture) {
-
-                profileImage.src = data.profilePicture;
-
-            }
-
-        }
-
-        // Load User Posts
-        const postsQuery = query(
+        const q = query(
             collection(db, "posts"),
-            where("uid", "==", user.uid)
+            where("uid", "==", uid)
         );
 
-        const postSnapshot = await getDocs(postsQuery);
+        const snapshot = await getDocs(q);
 
-        postsCount.textContent = postSnapshot.size;
+        postCount.textContent = snapshot.size;
 
         myPosts.innerHTML = "";
 
-        if (postSnapshot.empty) {
+        if (snapshot.empty) {
 
             myPosts.innerHTML = `
-                <div class="post-card">
-                    <h3>No Posts Yet</h3>
-                    <p>Create your first post!</p>
-                </div>
+            <div class="post-card">
+                <h3>No Posts Yet</h3>
+                <p>Create your first Lumora post 🚀</p>
+            </div>
             `;
 
-        } else {
-
-            postSnapshot.forEach((doc) => {
-
-                const post = doc.data();
-
-                myPosts.innerHTML += `
-
-                    <div class="post-card">
-
-                        <p>${post.content}</p>
-
-                        <small>
-                            ❤️ ${post.likes || 0}
-                            &nbsp;&nbsp;
-                            💬 ${post.comments || 0}
-                        </small>
-
-                    </div>
-
-                `;
-
-            });
+            return;
 
         }
+
+        snapshot.forEach((doc) => {
+
+            const post = doc.data();
+
+            myPosts.innerHTML += `
+
+            <div class="post-card">
+
+                <h3>${post.caption || "Untitled Post"}</h3>
+
+                ${
+                    post.image
+                    ? `<img src="${post.image}" class="post-image">`
+                    : ""
+                }
+
+                <div class="post-actions">
+
+                    <span>❤️ ${post.likes || 0}</span>
+
+                    <span>💬 ${post.comments || 0}</span>
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
 
     } catch (error) {
 
         console.error(error);
 
         myPosts.innerHTML = `
-            <div class="post-card">
-                <p>${error.message}</p>
-            </div>
+        <div class="post-card">
+            <p>${error.message}</p>
+        </div>
         `;
 
     }
+
+}
+
+logoutBtn.addEventListener("click", async () => {
+
+    await signOut(auth);
+
+    window.location.href = "login.html";
+
+});
+
+editProfileBtn.addEventListener("click", () => {
+
+    alert("🚀 Edit Profile feature is coming soon!");
 
 });
