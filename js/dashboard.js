@@ -101,6 +101,18 @@ async function loadPosts() {
 
                 </div>
 
+<div class="post-owner-actions">
+
+    <button onclick="editPost('${postDoc.id}')">
+        ✏ Edit
+    </button>
+
+    <button onclick="deletePost('${postDoc.id}')">
+        🗑 Delete
+    </button>
+
+</div>
+
                 <div
                     class="comments-box"
                     id="comments-${postDoc.id}"
