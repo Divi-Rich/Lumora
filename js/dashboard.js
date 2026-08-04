@@ -1,22 +1,19 @@
 import { auth, db } from "./firebase.js";
 
-
 import {
-collection,
-getDocs,
-getDoc,
-orderBy,
-query,
-doc,
-updateDoc,
-increment,
-arrayUnion,
-arrayRemove,
-addDoc,
-deleteDoc,
-serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+    collection,
+    getDocs,
+    getDoc,
+    orderBy,
+    query,
+    doc,
+    updateDoc,
+    increment,
+    arrayUnion,
+    arrayRemove,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 import {
     onAuthStateChanged,
@@ -30,13 +27,12 @@ const logoutBtn = document.getElementById("logoutBtn");
 onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
-
         window.location.href = "login.html";
         return;
-
     }
 
-    welcomeUser.textContent = `👋 Welcome, ${user.displayName || "Lumorian"}!`;
+    welcomeUser.textContent =
+        `👋 Welcome, ${user.displayName || "Lumorian"}!`;
 
     loadPosts();
 
@@ -62,7 +58,7 @@ async function loadPosts() {
             postsContainer.innerHTML = `
             <div class="post-card">
                 <h3>No posts yet</h3>
-                <p>Be the first to share something on Lumora 🚀</p>
+                <p>Be the first to share something 🚀</p>
             </div>
             `;
 
@@ -70,11 +66,12 @@ async function loadPosts() {
 
         }
 
-        snapshot.forEach(doc => {
+        snapshot.forEach(postDoc => {
 
-            const post = doc.data();
+            const post = postDoc.data();
 
             postsContainer.innerHTML += `
+
             <div class="post-card">
 
                 <h3>${post.caption || "Untitled Post"}</h3>
@@ -85,40 +82,49 @@ async function loadPosts() {
                     : ""
                 }
 
- <div class="post-actions">
+                <div class="post-actions">
 
-    <span onclick="likePost('${doc.id}')">
-        ❤️ <span id="likes-${doc.id}">
-            ${post.likes || 0}
-        </span>
-    </span>
+                    <span onclick="likePost('${postDoc.id}')">
 
-    <span onclick="toggleComments('${doc.id}')">
-        💬 ${post.comments || 0}
-    </span>
+                        ❤️
+                        <span id="likes-${postDoc.id}">
+                            ${post.likes || 0}
+                        </span>
 
-</div>
+                    </span>
 
-<div class="comments-box" id="comments-${doc.id}" style="display:none;">
+                    <span onclick="toggleComments('${postDoc.id}')">
 
-    <div id="comments-list-${doc.id}"></div>
+                        💬 ${post.comments || 0}
 
-    <input
-        id="comment-input-${doc.id}"
-        type="text"
-        placeholder="Write a comment...">
+                    </span>
 
-    <button
-        class="primary"
-        onclick="addComment('${doc.id}')">
+                </div>
 
-        Send
+                <div
+                    class="comments-box"
+                    id="comments-${postDoc.id}"
+                    style="display:none;">
 
-    </button>
+                    <div id="comments-list-${postDoc.id}"></div>
 
-</div>
+                    <input
+                        id="comment-input-${postDoc.id}"
+                        type="text"
+                        placeholder="Write a comment...">
+
+                    <button
+                        class="primary"
+                        onclick="addComment('${postDoc.id}')">
+
+                        Send
+
+                    </button>
+
+                </div>
 
             </div>
+
             `;
 
         });
@@ -146,76 +152,11 @@ logoutBtn.addEventListener("click", async () => {
 
 });
 
+// ===============================
+// LIKE / UNLIKE POST
+// ===============================
+
 window.likePost = async function(postId){
-
-    snap.forEach(doc=>{
-
-        const comment=doc.data();
-
-        container.innerHTML+=`
-
-        <div class="comment">
-
-            <b>${comment.username}</b>
-
-            <p>${comment.text}</p>
-
-        </div>
-
-        `;
-
-    });
-
-}
-
-
-window.addComment = async function(postId){
-
-    const input=document.getElementById(`comment-input-${postId}`);
-
-    const text=input.value.trim();
-
-    if(text==="") return;
-
-    const user=auth.currentUser;
-
-    await addDoc(
-
-        collection(db,"posts",postId,"comments"),
-
-        {
-
-            uid:user.uid,
-
-            username:user.displayName || "Lumorian",
-
-            text:text,
-
-            createdAt:serverTimestamp()
-
-        }
-
-    );
-
-    await updateDoc(
-
-        doc(db,"posts",postId),
-
-        {
-
-            comments:increment(1)
-
-        }
-
-    );
-
-    input.value="";
-
-    loadComments(postId);
-
-    loadPosts();
-
-}
 
     try{
 
@@ -243,67 +184,4 @@ window.addComment = async function(postId){
                 likedBy: arrayRemove(user.uid)
             });
 
-        }else{
-
-            await updateDoc(postRef,{
-                likes: increment(1),
-                likedBy: arrayUnion(user.uid)
-            });
-
         }
-
-        loadPosts();
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(error.message);
-
-    }
-
-}
-
-window.toggleComments = async function(postId){
-
-    const box = document.getElementById(`comments-${postId}`);
-
-    if(box.style.display==="none"){
-
-        box.style.display="block";
-
-        loadComments(postId);
-
-    }else{
-
-        box.style.display="none";
-
-    }
-
-}
-
-async function loadComments(postId){
-
-    const container = document.getElementById(`comments-list-${postId}`);
-
-    container.innerHTML="Loading...";
-
-    const q=query(
-
-        collection(db,"posts",postId,"comments"),
-
-        orderBy("createdAt","asc")
-
-    );
-
-    const snap=await getDocs(q);
-
-    container.innerHTML="";
-
-    if(snap.empty){
-
-        container.innerHTML="<p>No comments yet.</p>";
-
-        return;
-
-    }
