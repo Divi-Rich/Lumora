@@ -15,44 +15,50 @@ postForm.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
-    try {
+    try{
 
         const user = auth.currentUser;
 
-        if (!user) {
+        if(!user){
             alert("Please login first.");
             return;
         }
 
         let imageUrl = "";
 
-        if (image.files.length > 0) {
-
+        if(image.files.length > 0){
             imageUrl = await uploadImage(image.files[0]);
-
         }
 
-        await addDoc(collection(db, "posts"), {
+        await addDoc(collection(db,"posts"),{
 
-            uid: user.uid,
+            uid:user.uid,
 
-            caption: caption.value,
+            authorName:user.displayName || "Lumorian",
 
-            image: imageUrl,
+            authorPhoto:user.photoURL || "",
 
-            likes: 0,
+            caption:caption.value,
 
-            comments: 0,
+            image:imageUrl,
 
-            createdAt: serverTimestamp()
+            likes:0,
+
+            comments:0,
+
+            shares:0,
+
+            views:0,
+
+            createdAt:serverTimestamp()
 
         });
 
-        alert("🎉 Post uploaded successfully!");
+        alert("🎉 Post published!");
 
         postForm.reset();
 
-    } catch (error) {
+    }catch(error){
 
         console.error(error);
 
