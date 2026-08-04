@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Login | Lumora</title>
+<title>Create Account | Lumora</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -27,15 +27,27 @@
 
 <h1>🌟 Lumora</h1>
 
-<h2>Welcome Back</h2>
+<h2>Create Your Account</h2>
 
-<p>Sign in and continue your journey.</p>
+<p>Join the Lumora community today.</p>
 
-<form id="loginForm">
+<form id="signupForm">
+
+<input
+type="text"
+id="fullName"
+placeholder="Full Name"
+required>
+
+<input
+type="text"
+id="username"
+placeholder="Username"
+required>
 
 <input
 type="email"
-id="loginEmail"
+id="signupEmail"
 placeholder="Email Address"
 required>
 
@@ -43,7 +55,7 @@ required>
 
 <input
 type="password"
-id="loginPassword"
+id="signupPassword"
 placeholder="Password"
 required>
 
@@ -55,7 +67,7 @@ required>
 type="submit"
 class="primary">
 
-Login
+🚀 Create Account
 
 </button>
 
@@ -63,11 +75,11 @@ Login
 
 <p class="bottom-text">
 
-Don't have an account?
+Already have an account?
 
-<a href="signup.html">
+<a href="login.html">
 
-Create one
+Login
 
 </a>
 
@@ -85,7 +97,7 @@ Create one
 
 </div>
 
-<script type="module" src="../js/login.js"></script>
+<script type="module" src="../js/signup.js"></script>
 
 </body>
 
