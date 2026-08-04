@@ -1053,3 +1053,61 @@ a:hover{
 }
 
 }
+
+/* ===========================================
+   LUMORA NOTIFICATIONS
+=========================================== */
+
+.feed{
+    padding:30px 20px;
+    max-width:900px;
+    margin:auto;
+}
+
+.feed-title{
+    font-size:32px;
+    margin-bottom:25px;
+    text-align:center;
+}
+
+.feed-card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    transition:.3s;
+}
+
+.feed-card:hover{
+    transform:translateY(-5px);
+    border-color:var(--secondary);
+}
+
+.feed-card h3{
+    margin-bottom:10px;
+    font-size:20px;
+}
+
+.feed-card p{
+    color:#bfc6ff;
+    font-size:14px;
+}
+
+@media(max-width:768px){
+
+.feed{
+    padding:20px 15px;
+}
+
+.feed-title{
+    font-size:26px;
+}
+
+.feed-card{
+    padding:18px;
+}
+
+}
