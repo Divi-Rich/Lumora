@@ -100,6 +100,7 @@ async function loadPosts() {
                         💬 ${post.comments || 0}
 
                     </span>
+</div>
 
                 ${auth.currentUser && auth.currentUser.uid === post.uid ? `
 
