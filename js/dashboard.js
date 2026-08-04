@@ -75,13 +75,17 @@ async function loadPosts() {
                     : ""
                 }
 
-                <div class="post-actions">
+ <div class="post-actions">
 
-                    <span>❤️ ${post.likes || 0}</span>
+    <span onclick="likePost('${doc.id}')">
+        ❤️ <span id="likes-${doc.id}">${post.likes || 0}</span>
+    </span>
 
-                    <span>💬 ${post.comments || 0}</span>
+    <span>
+        💬 ${post.comments || 0}
+    </span>
 
-                </div>
+</div>
 
             </div>
             `;
