@@ -40,6 +40,8 @@ postForm.addEventListener("submit", async (e) => {
 
     likes: 0,
 
+    likedBy: [],
+
     comments: 0,
 
     createdAt: serverTimestamp()
