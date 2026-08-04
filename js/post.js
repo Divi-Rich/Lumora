@@ -30,29 +30,21 @@ postForm.addEventListener("submit", async (e) => {
             imageUrl = await uploadImage(image.files[0]);
         }
 
-        await addDoc(collection(db,"posts"),{
+        await addDoc(collection(db, "posts"), {
 
-            uid:user.uid,
+    uid: user.uid,
 
-            authorName:user.displayName || "Lumorian",
+    caption: caption.value,
 
-            authorPhoto:user.photoURL || "",
+    image: imageUrl,
 
-            caption:caption.value,
+    likes: 0,
 
-            image:imageUrl,
+    comments: 0,
 
-            likes:0,
+    createdAt: serverTimestamp()
 
-            comments:0,
-
-            shares:0,
-
-            views:0,
-
-            createdAt:serverTimestamp()
-
-        });
+});
 
         alert("🎉 Post published!");
 
