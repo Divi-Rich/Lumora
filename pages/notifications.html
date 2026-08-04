@@ -1,58 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Notifications | Lumora</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="../style.css">
+
 </head>
+
 <body>
 
-<header>
-<nav class="navbar">
-<h1 class="logo">🌟 Lumora</h1>
+<header class="topbar">
 
-<ul class="nav-links">
-<li><a href="../index.html">Home</a></li>
-<li><a href="feed.html">Feed</a></li>
-<li><a href="messages.html">Messages</a></li>
-<li><a href="profile.html">Profile</a></li>
-</ul>
+<div class="logo">
 
-</nav>
+🌟 Lumora
+
+</div>
+
+<div class="top-icons">
+
+<a href="messages.html">💬</a>
+
+<a href="profile.html">👤</a>
+
+</div>
+
 </header>
 
-<section class="feed">
+<main class="dashboard">
 
-<h1 class="feed-title">🔔 Notifications</h1>
+<h1 class="feed-title">
 
-<div class="feed-card">
-<h3>❤️ David liked your post.</h3>
-<p>2 minutes ago</p>
+🔔 Notifications
+
+</h1>
+
+<div class="feed-preview">
+
+<div class="post-card">
+
+<h3>❤️ David liked your post</h3>
+
+<p>Your latest post is getting attention.</p>
+
+<small>2 minutes ago</small>
+
 </div>
 
-<div class="feed-card">
-<h3>👤 Sarah started following you.</h3>
-<p>10 minutes ago</p>
+<div class="post-card">
+
+<h3>👤 Sarah followed you</h3>
+
+<p>You have a new follower.</p>
+
+<small>10 minutes ago</small>
+
 </div>
 
-<div class="feed-card">
-<h3>💬 Lumora AI recommended a new HTML course.</h3>
-<p>1 hour ago</p>
+<div class="post-card">
+
+<h3>💬 Lumora AI</h3>
+
+<p>We found a new HTML course you'll love.</p>
+
+<small>1 hour ago</small>
+
 </div>
 
-<div class="feed-card">
-<h3>🏆 Congratulations! You earned the "Builder" badge.</h3>
-<p>Today</p>
+<div class="post-card">
+
+<h3>🏆 Achievement Unlocked</h3>
+
+<p>You earned the <b>Builder</b> badge.</p>
+
+<small>Today</small>
+
 </div>
 
-</section>
+<div class="post-card">
 
-<footer>
-<p>© 2026 Lumora</p>
-</footer>
+<h3>🔥 Trending</h3>
 
-<script src="../script.js"></script>
+<p>Your post has reached 100 views.</p>
+
+<small>Today</small>
+
+</div>
+
+</div>
+
+</main>
+
+<nav class="bottom-nav">
+
+<a href="dashboard.html">🏠</a>
+
+<a href="feed.html">📰</a>
+
+<a href="post.html">➕</a>
+
+<a href="messages.html">💬</a>
+
+<a href="profile.html">👤</a>
+
+</nav>
+
+<script type="module" src="../js/notifications.js"></script>
 
 </body>
+
 </html>
