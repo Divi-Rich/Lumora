@@ -917,3 +917,43 @@ MESSAGES PAGE
 .profile-form button{
     width:100%;
 }
+
+.comments-box{
+
+    margin-top:20px;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.05);
+
+}
+
+.comment{
+
+    padding:10px;
+
+    margin-bottom:10px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.comment b{
+
+    color:#00d4ff;
+
+}
+
+.comment p{
+
+    margin-top:5px;
+
+}
+
+.comments-box input{
+
+    margin-top:15px;
+
+}
