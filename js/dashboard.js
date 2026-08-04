@@ -1,5 +1,6 @@
 import { auth, db } from "./firebase.js";
 
+
 import {
     collection,
     getDocs,
@@ -12,6 +13,7 @@ import {
     arrayUnion,
     arrayRemove,
     addDoc,
+    deleteDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
