@@ -122,13 +122,38 @@ window.likePost = async function(postId){
 
     try{
 
-        const postRef = doc(db, "posts", postId);
+        const user = auth.currentUser;
 
-        await updateDoc(postRef, {
+        if(!user){
+            alert("Please login first.");
+            return;
+        }
 
-            likes: increment(1)
+        const postRef = doc(db,"posts",postId);
 
-        });
+        const snap = await getDoc(postRef);
+
+        if(!snap.exists()) return;
+
+        const post = snap.data();
+
+        const likedBy = post.likedBy || [];
+
+        if(likedBy.includes(user.uid)){
+
+            await updateDoc(postRef,{
+                likes: increment(-1),
+                likedBy: arrayRemove(user.uid)
+            });
+
+        }else{
+
+            await updateDoc(postRef,{
+                likes: increment(1),
+                likedBy: arrayUnion(user.uid)
+            });
+
+        }
 
         loadPosts();
 
@@ -136,7 +161,7 @@ window.likePost = async function(postId){
 
         console.error(error);
 
-        alert("Failed to like post.");
+        alert(error.message);
 
     }
 
