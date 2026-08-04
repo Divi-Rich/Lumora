@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lumora Stories</title>
+
+<title>Stories | Lumora</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../style.css">
 
@@ -11,145 +21,111 @@
 
 <body>
 
-<header>
+<header class="topbar">
 
-<nav class="navbar">
+<div class="logo">
 
-<h1 class="logo">🌟 Lumora</h1>
+🌟 Lumora Stories
 
-<ul class="nav-links">
+</div>
 
-<li><a href="../index.html">Home</a></li>
+<div class="top-icons">
 
-<li><a href="feed.html">Feed</a></li>
+<a href="notifications.html">🔔</a>
 
-<li><a href="stories.html">Stories</a></li>
+<a href="messages.html">💬</a>
 
-<li><a href="reels.html">Reels</a></li>
+<a href="profile.html">👤</a>
 
-<li><a href="profile.html">Profile</a></li>
-
-</ul>
-
-</nav>
+</div>
 
 </header>
 
-<section class="stories-page">
+<main class="dashboard">
 
-<h1 class="feed-title">
+<h2 class="feed-title">
 
 📸 Stories
 
-</h1>
+</h2>
 
-<div class="stories-container">
+<section class="stories">
 
-<div class="story">
+<div class="story-container">
 
-<div class="story-circle">
+<div class="story">➕</div>
 
-➕
+<div class="story">👨🏽</div>
 
-</div>
+<div class="story">👩🏾</div>
 
-<p>Your Story</p>
+<div class="story">🤖</div>
 
-</div>
+<div class="story">🎵</div>
 
-<div class="story">
+<div class="story">🌍</div>
 
-<div class="story-circle">
-
-👨🏾
-
-</div>
-
-<p>David</p>
-
-</div>
-
-<div class="story">
-
-<div class="story-circle">
-
-👩🏾
-
-</div>
-
-<p>Sarah</p>
-
-</div>
-
-<div class="story">
-
-<div class="story-circle">
-
-👨🏽‍💻
-
-</div>
-
-<p>Daniel</p>
-
-</div>
-
-<div class="story">
-
-<div class="story-circle">
-
-🎵
-
-</div>
-
-<p>Music</p>
-
-</div>
-
-<div class="story">
-
-<div class="story-circle">
-
-🤖
-
-</div>
-
-<p>AI</p>
-
-</div>
-
-</div>
-
-<div class="story-view">
-
-<h2>Welcome to Lumora Stories</h2>
-
-<p>
-
-Share moments with your friends, community and followers.
-
-</p>
-
-<img src="https://picsum.photos/800/500?random=22" alt="Story">
-
-<button class="primary">
-
-Upload Story
-
-</button>
+<div class="story">📚</div>
 
 </div>
 
 </section>
 
-<footer>
+<div class="glass-card" style="padding:20px;margin-top:25px;">
 
-<p>© 2026 Lumora</p>
+<h3>Create Story</h3>
 
-<p>Discover • Learn • Connect • Grow</p>
+<input
+type="file"
+id="storyImage"
+accept="image/*,video/*">
 
-</footer>
+<button
+id="uploadStoryBtn"
+class="primary">
 
-<script src="../script.js"></script>
+📤 Upload Story
+
+</button>
+
+<p id="storyStatus"></p>
+
+</div>
+
+<section class="feed-preview">
+
+<h2>Recent Stories</h2>
+
+<div id="storiesContainer">
+
+<div class="post-card">
+
+<p>No stories yet.</p>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<nav class="bottom-nav">
+
+<a href="dashboard.html">🏠</a>
+
+<a href="feed.html">📰</a>
+
+<a href="post.html">➕</a>
+
+<a href="messages.html">💬</a>
+
+<a href="profile.html">👤</a>
+
+</nav>
+
+<script type="module" src="../js/stories.js"></script>
 
 </body>
+
 </html>
