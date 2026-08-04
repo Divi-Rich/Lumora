@@ -6,8 +6,9 @@ import {
     orderBy,
     query,
     doc,
-    updateDoc,
-    increment
+    runTransaction,
+    arrayUnion,
+    arrayRemove
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 import {
