@@ -3,10 +3,12 @@ import { auth, db } from "./firebase.js";
 import {
     collection,
     getDocs,
+    getDoc,
     orderBy,
     query,
     doc,
-    runTransaction,
+    updateDoc,
+    increment,
     arrayUnion,
     arrayRemove
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
