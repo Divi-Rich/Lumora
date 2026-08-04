@@ -1,22 +1,15 @@
 import { db } from "./firebase.js";
 
 import {
-
 collection,
-
+getDocs,
 query,
-
-orderBy,
-
-getDocs
-
+orderBy
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
-const postsContainer=document.getElementById("postsContainer");
+const feedContainer = document.getElementById("feedContainer");
 
-async function loadPosts(){
-
-postsContainer.innerHTML="<p>Loading...</p>";
+async function loadFeed(){
 
 try{
 
@@ -30,43 +23,43 @@ orderBy("createdAt","desc")
 
 const snapshot=await getDocs(q);
 
+feedContainer.innerHTML="";
+
 if(snapshot.empty){
 
-postsContainer.innerHTML=`
-
+feedContainer.innerHTML=`
 <div class="post-card">
 
-<h2>No Posts Yet</h2>
+<h3>No Posts Yet</h3>
 
-<p>Be the first to post on Lumora.</p>
+<p>Create the first Lumora post 🚀</p>
 
 </div>
-
 `;
 
 return;
 
 }
 
-postsContainer.innerHTML="";
-
 snapshot.forEach(doc=>{
 
 const post=doc.data();
 
-postsContainer.innerHTML+=`
+feedContainer.innerHTML+=`
 
 <div class="post-card">
 
-<h3>${post.email}</h3>
+<h3>${post.caption}</h3>
 
-<p>${post.content}</p>
+${post.image?`<img src="${post.image}" class="post-image">`:""}
 
 <div class="post-actions">
 
-<button>❤️ ${post.likes}</button>
+<span>❤️ ${post.likes||0}</span>
 
-<button>💬 ${post.comments}</button>
+<span>💬 ${post.comments||0}</span>
+
+<span>📤 Share</span>
 
 </div>
 
@@ -78,11 +71,9 @@ postsContainer.innerHTML+=`
 
 }catch(error){
 
-postsContainer.innerHTML=`
+feedContainer.innerHTML=`
 
 <div class="post-card">
-
-<h2>Error</h2>
 
 <p>${error.message}</p>
 
@@ -94,4 +85,4 @@ postsContainer.innerHTML=`
 
 }
 
-loadPosts();
+loadFeed();
