@@ -356,11 +356,28 @@ window.editPost = async function(postId){
 };
 
 window.deletePost = async function(postId){
-    const confirmDelete = confirm("Delete this post?");
 
-    if(!confirmDelete) return;
+    const user = auth.currentUser;
 
-    await deleteDoc(doc(db, "posts", postId));
+    if(!user) return;
+
+    const postRef = doc(db,"posts",postId);
+
+    const snap = await getDoc(postRef);
+
+    if(!snap.exists()) return;
+
+    const post = snap.data();
+
+    if(post.uid !== user.uid){
+        alert("You can only delete your own posts.");
+        return;
+    }
+
+    if(!confirm("Delete this post?")) return;
+
+    await deleteDoc(postRef);
 
     loadPosts();
+
 };
