@@ -1,19 +1,16 @@
 import { auth, db } from "./firebase.js";
 
 import {
+    collection,
+    getDocs,
+    orderBy,
+    query
+} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+
+import {
     onAuthStateChanged,
     signOut
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
-
-import {
-    doc,
-    getDoc,
-    collection,
-    query,
-    orderBy,
-    limit,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const welcomeUser = document.getElementById("welcomeUser");
 const postsContainer = document.getElementById("postsContainer");
@@ -22,42 +19,54 @@ const logoutBtn = document.getElementById("logoutBtn");
 onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
+
         window.location.href = "login.html";
         return;
-    }
-
-    // Load user information
-    const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
-
-    if (userSnap.exists()) {
-
-        const data = userSnap.data();
-
-        welcomeUser.textContent =
-            `👋 Welcome back, ${data.fullName}!`;
 
     }
 
-    // Load latest posts
-    const q = query(
-        collection(db, "posts"),
-        orderBy("createdAt", "desc"),
-        limit(10)
-    );
+    welcomeUser.textContent = `👋 Welcome, ${user.displayName || "Lumorian"}!`;
 
-    const snapshot = await getDocs(q);
+    loadPosts();
 
-    postsContainer.innerHTML = "";
+});
 
-    snapshot.forEach((doc) => {
+async function loadPosts() {
 
-        const post = doc.data();
+    postsContainer.innerHTML = "<p>Loading posts...</p>";
 
-        postsContainer.innerHTML += `
+    try {
+
+        const q = query(
+            collection(db, "posts"),
+            orderBy("createdAt", "desc")
+        );
+
+        const snapshot = await getDocs(q);
+
+        postsContainer.innerHTML = "";
+
+        if (snapshot.empty) {
+
+            postsContainer.innerHTML = `
+            <div class="post-card">
+                <h3>No posts yet</h3>
+                <p>Be the first to share something on Lumora 🚀</p>
+            </div>
+            `;
+
+            return;
+
+        }
+
+        snapshot.forEach(doc => {
+
+            const post = doc.data();
+
+            postsContainer.innerHTML += `
             <div class="post-card">
 
-                <p>${post.caption}</p>
+                <h3>${post.caption || "Untitled Post"}</h3>
 
                 ${
                     post.image
@@ -67,28 +76,36 @@ onAuthStateChanged(auth, async (user) => {
 
                 <div class="post-actions">
 
-                    ❤️ ${post.likes}
+                    <span>❤️ ${post.likes || 0}</span>
 
-                    💬 ${post.comments}
+                    <span>💬 ${post.comments || 0}</span>
 
                 </div>
 
             </div>
+            `;
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        postsContainer.innerHTML = `
+        <div class="post-card">
+            <h3>Error</h3>
+            <p>${error.message}</p>
+        </div>
         `;
 
-    });
-
-});
-
-// Logout
-if (logoutBtn) {
-
-    logoutBtn.addEventListener("click", async () => {
-
-        await signOut(auth);
-
-        window.location.href = "login.html";
-
-    });
+    }
 
 }
+
+logoutBtn.addEventListener("click", async () => {
+
+    await signOut(auth);
+
+    window.location.href = "login.html";
+
+});
