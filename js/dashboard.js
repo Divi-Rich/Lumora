@@ -148,50 +148,6 @@ logoutBtn.addEventListener("click", async () => {
 
 window.likePost = async function(postId){
 
-window.toggleComments = async function(postId){
-
-    const box = document.getElementById(`comments-${postId}`);
-
-    if(box.style.display==="none"){
-
-        box.style.display="block";
-
-        loadComments(postId);
-
-    }else{
-
-        box.style.display="none";
-
-    }
-
-}
-
-async function loadComments(postId){
-
-    const container = document.getElementById(`comments-list-${postId}`);
-
-    container.innerHTML="Loading...";
-
-    const q=query(
-
-        collection(db,"posts",postId,"comments"),
-
-        orderBy("createdAt","asc")
-
-    );
-
-    const snap=await getDocs(q);
-
-    container.innerHTML="";
-
-    if(snap.empty){
-
-        container.innerHTML="<p>No comments yet.</p>";
-
-        return;
-
-    }
-
     snap.forEach(doc=>{
 
         const comment=doc.data();
@@ -307,3 +263,47 @@ window.addComment = async function(postId){
     }
 
 }
+
+window.toggleComments = async function(postId){
+
+    const box = document.getElementById(`comments-${postId}`);
+
+    if(box.style.display==="none"){
+
+        box.style.display="block";
+
+        loadComments(postId);
+
+    }else{
+
+        box.style.display="none";
+
+    }
+
+}
+
+async function loadComments(postId){
+
+    const container = document.getElementById(`comments-list-${postId}`);
+
+    container.innerHTML="Loading...";
+
+    const q=query(
+
+        collection(db,"posts",postId,"comments"),
+
+        orderBy("createdAt","asc")
+
+    );
+
+    const snap=await getDocs(q);
+
+    container.innerHTML="";
+
+    if(snap.empty){
+
+        container.innerHTML="<p>No comments yet.</p>";
+
+        return;
+
+    }
