@@ -352,7 +352,27 @@ window.addComment = async function(postId){
 };
 
 window.editPost = async function(postId){
-    alert("Edit feature coming next!");
+
+    const postRef = doc(db, "posts", postId);
+
+    const snap = await getDoc(postRef);
+
+    if(!snap.exists()) return;
+
+    const post = snap.data();
+
+    const newCaption = prompt("Edit your caption:", post.caption);
+
+    if(newCaption === null) return;
+
+    if(newCaption.trim() === "") return;
+
+    await updateDoc(postRef,{
+        caption: newCaption.trim()
+    });
+
+    loadPosts();
+
 };
 
 window.deletePost = async function(postId){
