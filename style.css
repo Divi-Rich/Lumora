@@ -297,10 +297,9 @@ TOP HEADER
 }
 
 .logo img{
-    width:40px;
-    height:40px;
-    object-fit:cover;
-    border-radius:10px;
+    width:46px;
+    height:46px;
+    border-radius:12px;
 }
 
 .top-icons{
