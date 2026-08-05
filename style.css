@@ -280,29 +280,17 @@ TOP HEADER
 ========================== */
 
 .topbar{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
-    padding:18px 22px;
-
-    position:sticky;
-
-    top:0;
-
-    z-index:999;
-
-    background:rgba(9,11,26,.8);
-
-    -webkit-backdrop-filter:blur(20px);
-
+    padding:14px 20px;
+    background:rgba(9,11,26,.85);
     backdrop-filter:blur(20px);
-
-    border-bottom:1px solid var(--border);
-
+    -webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(255,255,255,.1);
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
 .logo{
