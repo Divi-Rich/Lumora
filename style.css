@@ -158,17 +158,12 @@ textarea{
 }
 
 .secondary{
-
-    background:linear-gradient(45deg,var(--secondary),var(--primary));
-
+    background:linear-gradient(45deg,#00d4ff,#7c3aed);
     color:white;
-
     border:none;
-
     border-radius:14px;
-
-    padding:14px 24px;
-
+    padding:10px 20px;
+    font-weight:600;
 }
 
 .secondary:hover{
