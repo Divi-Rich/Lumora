@@ -309,13 +309,9 @@ TOP HEADER
 }
 
 .top-icons{
-
     display:flex;
-
-    gap:18px;
-
     align-items:center;
-
+    gap:12px;
 }
 
 .top-icons a{
