@@ -608,6 +608,25 @@ footer p{
     margin:5px 0;
 }
 
+.hero h1{
+    font-size:48px;
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.hero{
+    margin:30px auto;
+    padding:40px;
+    max-width:1100px;
+    text-align:center;
+}
+
 /* ==========================
 RESPONSIVE
 ========================== */
@@ -962,21 +981,3 @@ MESSAGES PAGE
 
 }
 
-.hero h1{
-    font-size:48px;
-    line-height:1.1;
-    margin-bottom:20px;
-}
-
-.hero p{
-    font-size:18px;
-    line-height:1.7;
-    margin-bottom:30px;
-}
-
-.hero{
-    margin:30px auto;
-    padding:40px;
-    max-width:1100px;
-    text-align:center;
-}
