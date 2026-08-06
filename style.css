@@ -979,3 +979,10 @@ MESSAGES PAGE
     line-height:1.7;
     margin-bottom:30px;
 }
+
+.hero{
+    margin:30px auto;
+    padding:40px;
+    max-width:1100px;
+    text-align:center;
+}
