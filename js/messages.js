@@ -188,8 +188,8 @@ const username =
     "Lumorian";
 
         const avatar =
-            user.photoURL ||
-            "👤";
+    user.profilePicture ||
+    "👤";
 
 
         const userElement =
