@@ -2,10 +2,12 @@ import { auth, db } from "./firebase.js";
 
 import {
     collection,
-    addDoc,
     getDocs,
+    addDoc,
+    doc,
+    getDoc,
+    setDoc,
     query,
-    where,
     orderBy,
     onSnapshot,
     serverTimestamp
@@ -16,11 +18,21 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 
 
+// ==========================================
+// ELEMENTS
+// ==========================================
+
 const usersList =
     document.getElementById("usersList");
 
 const searchUser =
     document.getElementById("searchUser");
+
+const chatName =
+    document.getElementById("chatName");
+
+const chatStatus =
+    document.getElementById("chatStatus");
 
 const chatMessages =
     document.getElementById("chatMessages");
@@ -31,12 +43,10 @@ const messageInput =
 const sendBtn =
     document.getElementById("sendBtn");
 
-const chatName =
-    document.getElementById("chatName");
 
-const chatStatus =
-    document.getElementById("chatStatus");
-
+// ==========================================
+// VARIABLES
+// ==========================================
 
 let currentUser = null;
 
@@ -47,9 +57,9 @@ let unsubscribeMessages = null;
 let allUsers = [];
 
 
-// =====================================================
-// AUTHENTICATION
-// =====================================================
+// ==========================================
+// AUTH
+// ==========================================
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -68,51 +78,62 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 
-// =====================================================
+// ==========================================
 // LOAD USERS
-// =====================================================
+// ==========================================
 
 async function loadUsers() {
 
-    usersList.innerHTML = `
-        <p style="opacity:.7;text-align:center;padding:20px;">
-            Loading users...
-        </p>
-    `;
+    usersList.innerHTML =
+        "<p>Loading Lumorians...</p>";
 
     try {
 
         const snapshot =
-            await getDocs(collection(db, "users"));
+            await getDocs(
+                collection(db, "users")
+            );
+
 
         allUsers = [];
 
-        snapshot.forEach(userDoc => {
+
+        snapshot.forEach((userDoc) => {
 
             const user = userDoc.data();
 
             // Don't show yourself
-            if (user.uid === currentUser.uid) {
+            if (userDoc.id === currentUser.uid) {
+
                 return;
+
             }
 
+
             allUsers.push({
-                id: userDoc.id,
+
+                uid: userDoc.id,
+
                 ...user
+
             });
 
         });
 
-        renderUsers(allUsers);
+
+        displayUsers(allUsers);
+
 
     } catch (error) {
 
         console.error(error);
 
         usersList.innerHTML = `
-            <p style="padding:20px;">
+
+            <p>
                 Unable to load users.
             </p>
+
         `;
 
     }
@@ -120,20 +141,37 @@ async function loadUsers() {
 }
 
 
-// =====================================================
+// ==========================================
 // DISPLAY USERS
-// =====================================================
+// ==========================================
 
-function renderUsers(users) {
+function displayUsers(users) {
 
     usersList.innerHTML = "";
+
 
     if (users.length === 0) {
 
         usersList.innerHTML = `
-            <p style="text-align:center;opacity:.7;padding:20px;">
-                No users found.
-            </p>
+
+            <div class="chat-user">
+
+                <div class="avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <h3>No users found</h3>
+
+                    <p>
+                        Invite someone to Lumora!
+                    </p>
+
+                </div>
+
+            </div>
+
         `;
 
         return;
@@ -141,22 +179,42 @@ function renderUsers(users) {
     }
 
 
-    users.forEach(user => {
+    users.forEach((user) => {
+
+        const username =
+            user.displayName ||
+            user.username ||
+            "Lumorian";
+
+
+        const avatar =
+            user.photoURL ||
+            "👤";
+
 
         const userElement =
             document.createElement("div");
 
-        userElement.className = "chat-user";
+
+        userElement.className =
+            "chat-user";
 
 
         userElement.innerHTML = `
 
             <div class="avatar">
 
-                ${user.photoURL
-                    ? `<img src="${user.photoURL}"
-                            style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`
-                    : "👤"
+                ${
+                    avatar.startsWith("http")
+                    ? `<img
+                        src="${avatar}"
+                        style="
+                            width:100%;
+                            height:100%;
+                            border-radius:50%;
+                            object-fit:cover;
+                        ">`
+                    : avatar
                 }
 
             </div>
@@ -165,15 +223,11 @@ function renderUsers(users) {
             <div>
 
                 <h3>
-                    ${escapeHTML(
-                        user.displayName ||
-                        user.username ||
-                        "Lumorian"
-                    )}
+                    ${escapeHTML(username)}
                 </h3>
 
                 <p>
-                    🟢 Available
+                    💬 Start conversation
                 </p>
 
             </div>
@@ -183,7 +237,11 @@ function renderUsers(users) {
 
         userElement.addEventListener(
             "click",
-            () => selectUser(user)
+            () => {
+
+                selectUser(user);
+
+            }
         );
 
 
@@ -194,77 +252,179 @@ function renderUsers(users) {
 }
 
 
-// =====================================================
-// SELECT USER
-// =====================================================
+// ==========================================
+// SEARCH USERS
+// ==========================================
 
-function selectUser(user) {
+searchUser.addEventListener(
+    "input",
+    () => {
+
+        const search =
+            searchUser.value
+                .toLowerCase()
+                .trim();
+
+
+        const filtered =
+            allUsers.filter((user) => {
+
+                const name =
+                    (
+                        user.displayName ||
+                        user.username ||
+                        ""
+                    ).toLowerCase();
+
+
+                const email =
+                    (
+                        user.email ||
+                        ""
+                    ).toLowerCase();
+
+
+                return (
+                    name.includes(search) ||
+                    email.includes(search)
+                );
+
+            });
+
+
+        displayUsers(filtered);
+
+    }
+);
+
+
+// ==========================================
+// SELECT USER
+// ==========================================
+
+async function selectUser(user) {
 
     selectedUser = user;
 
 
-    chatName.textContent =
+    const username =
         user.displayName ||
         user.username ||
         "Lumorian";
 
 
+    chatName.textContent =
+        username;
+
+
     chatStatus.textContent =
-        "💬 Private conversation";
+        "🔒 Private conversation";
 
 
     messageInput.disabled = false;
 
     sendBtn.disabled = false;
 
+    messageInput.placeholder =
+        `Message ${username}...`;
 
-    if (unsubscribeMessages) {
 
-        unsubscribeMessages();
+    await loadConversation();
 
-        unsubscribeMessages = null;
+}
+
+
+// ==========================================
+// CREATE UNIQUE CONVERSATION ID
+// ==========================================
+
+function getConversationId(uid1, uid2) {
+
+    return [uid1, uid2]
+        .sort()
+        .join("_");
+
+}
+
+
+// ==========================================
+// LOAD CONVERSATION
+// ==========================================
+
+async function loadConversation() {
+
+    if (!selectedUser || !currentUser) {
+
+        return;
 
     }
 
 
-    loadConversation();
+    // Remove previous real-time listener
+    if (unsubscribeMessages) {
 
-}
+        unsubscribeMessages();
 
-
-// =====================================================
-// CREATE UNIQUE CONVERSATION ID
-// =====================================================
-
-function getConversationId() {
-
-    const ids = [
-
-        currentUser.uid,
-        selectedUser.uid
-
-    ];
-
-
-    ids.sort();
-
-
-    return ids.join("_");
-
-}
-
-
-// =====================================================
-// LOAD PRIVATE CONVERSATION
-// =====================================================
-
-function loadConversation() {
-
-    if (!selectedUser) return;
+    }
 
 
     const conversationId =
-        getConversationId();
+        getConversationId(
+            currentUser.uid,
+            selectedUser.uid
+        );
+
+
+    const conversationRef =
+        doc(
+            db,
+            "conversations",
+            conversationId
+        );
+
+
+    // Create conversation if it doesn't exist
+    const conversationSnap =
+        await getDoc(conversationRef);
+
+
+    if (!conversationSnap.exists()) {
+
+        await setDoc(
+            conversationRef,
+            {
+
+                participants: [
+
+                    currentUser.uid,
+
+                    selectedUser.uid
+
+                ],
+
+                createdAt:
+                    serverTimestamp(),
+
+                lastMessage: "",
+
+                lastMessageAt:
+                    serverTimestamp()
+
+            }
+        );
+
+    }
+
+
+    chatMessages.innerHTML = `
+
+        <div class="message received">
+
+            🔒 This is a private conversation.
+
+        </div>
+
+    `;
 
 
     const messagesRef =
@@ -276,87 +436,91 @@ function loadConversation() {
         );
 
 
-    const q = query(
-        messagesRef,
-        orderBy("createdAt", "asc")
-    );
+    const q =
+        query(
+            messagesRef,
+            orderBy("createdAt", "asc")
+        );
 
 
     unsubscribeMessages =
-        onSnapshot(q, (snapshot) => {
+        onSnapshot(
+            q,
+            (snapshot) => {
 
-            chatMessages.innerHTML = "";
-
-
-            if (snapshot.empty) {
-
-                chatMessages.innerHTML = `
-
-                    <div style="
-                        text-align:center;
-                        opacity:.6;
-                        padding:30px;
-                    ">
-
-                        👋 Say hello!
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
+                chatMessages.innerHTML = "";
 
 
-            snapshot.forEach(messageDoc => {
+                if (snapshot.empty) {
 
-                const message =
-                    messageDoc.data();
+                    chatMessages.innerHTML = `
 
+                        <div class="message received">
 
-                const mine =
-                    message.senderId ===
-                    currentUser.uid;
+                            👋 Say hello!
 
+                        </div>
 
-                const messageElement =
-                    document.createElement("div");
+                    `;
 
+                    return;
 
-                messageElement.className =
-                    `message ${
-                        mine
-                        ? "sent"
-                        : "received"
-                    }`;
+                }
 
 
-                messageElement.innerHTML = `
+                snapshot.forEach(
+                    (messageDoc) => {
 
-                    ${escapeHTML(message.text)}
+                        const message =
+                            messageDoc.data();
 
-                `;
+
+                        const mine =
+                            message.senderId ===
+                            currentUser.uid;
 
 
-                chatMessages.appendChild(
-                    messageElement
+                        const messageElement =
+                            document.createElement("div");
+
+
+                        messageElement.className =
+                            `message ${
+                                mine
+                                ? "sent"
+                                : "received"
+                            }`;
+
+
+                        messageElement.innerHTML = `
+
+                            ${escapeHTML(
+                                message.text || ""
+                            )}
+
+                        `;
+
+
+                        chatMessages.appendChild(
+                            messageElement
+                        );
+
+                    }
                 );
 
-            });
 
+                chatMessages.scrollTop =
+                    chatMessages.scrollHeight;
 
-            chatMessages.scrollTop =
-                chatMessages.scrollHeight;
-
-        });
+            }
+        );
 
 }
 
 
-// =====================================================
+// ==========================================
 // SEND MESSAGE
-// =====================================================
+// ==========================================
 
 sendBtn.addEventListener(
     "click",
@@ -382,11 +546,18 @@ messageInput.addEventListener(
 
 async function sendMessage() {
 
-    if (!currentUser) return;
+    if (!currentUser) {
+
+        return;
+
+    }
+
 
     if (!selectedUser) {
 
-        alert("Select a user first.");
+        alert(
+            "Select a user first."
+        );
 
         return;
 
@@ -394,27 +565,37 @@ async function sendMessage() {
 
 
     const text =
-        messageInput.value.trim();
+        messageInput.value
+            .trim();
 
 
-    if (!text) return;
+    if (!text) {
+
+        return;
+
+    }
+
+
+    const conversationId =
+        getConversationId(
+            currentUser.uid,
+            selectedUser.uid
+        );
 
 
     try {
 
-        const conversationId =
-            getConversationId();
-
-
-        await addDoc(
-
+        const messagesRef =
             collection(
                 db,
                 "conversations",
                 conversationId,
                 "messages"
-            ),
+            );
 
+
+        await addDoc(
+            messagesRef,
             {
 
                 senderId:
@@ -423,17 +604,46 @@ async function sendMessage() {
                 receiverId:
                     selectedUser.uid,
 
+                senderName:
+                    currentUser.displayName ||
+                    currentUser.email ||
+                    "Lumorian",
+
                 text: text,
 
                 createdAt:
                     serverTimestamp()
 
             }
+        );
+
+
+        // Update conversation preview
+
+        await setDoc(
+            doc(
+                db,
+                "conversations",
+                conversationId
+            ),
+            {
+
+                lastMessage: text,
+
+                lastMessageAt:
+                    serverTimestamp()
+
+            },
+
+            {
+                merge: true
+            }
 
         );
 
 
         messageInput.value = "";
+
 
         messageInput.focus();
 
@@ -443,7 +653,8 @@ async function sendMessage() {
         console.error(error);
 
         alert(
-            "Message failed to send."
+            "Message failed: " +
+            error.message
         );
 
     }
@@ -451,62 +662,22 @@ async function sendMessage() {
 }
 
 
-// =====================================================
-// SEARCH USERS
-// =====================================================
-
-searchUser.addEventListener(
-    "input",
-    () => {
-
-        const search =
-            searchUser.value
-                .trim()
-                .toLowerCase();
-
-
-        if (!search) {
-
-            renderUsers(allUsers);
-
-            return;
-
-        }
-
-
-        const filtered =
-            allUsers.filter(user => {
-
-                const name =
-                    (
-                        user.displayName ||
-                        user.username ||
-                        ""
-                    ).toLowerCase();
-
-
-                return name.includes(search);
-
-            });
-
-
-        renderUsers(filtered);
-
-    }
-);
-
-
-// =====================================================
-// BASIC HTML ESCAPING
-// =====================================================
+// ==========================================
+// BASIC HTML ESCAPE
+// ==========================================
 
 function escapeHTML(value) {
 
     return String(value)
+
         .replace(/&/g, "&amp;")
+
         .replace(/</g, "&lt;")
+
         .replace(/>/g, "&gt;")
+
         .replace(/"/g, "&quot;")
+
         .replace(/'/g, "&#039;");
 
 }
