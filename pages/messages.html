@@ -21,155 +21,114 @@
 
 <body>
 
-<header>
+<header class="topbar">
 
-<nav class="navbar">
+<div class="logo">
+    🌟 Lumora
+</div>
 
-<h1 class="logo">🌟 Lumora</h1>
+<div class="top-icons">
 
-<ul class="nav-links">
+<a href="dashboard.html">🏠</a>
 
-<li><a href="../index.html">🏠 Home</a></li>
+<a href="notifications.html">🔔</a>
 
-<li><a href="dashboard.html">Dashboard</a></li>
+<a href="profile.html">👤</a>
 
-<li><a href="feed.html">Feed</a></li>
-
-<li><a href="stories.html">Stories</a></li>
-
-<li><a href="reels.html">Reels</a></li>
-
-<li><a href="messages.html" class="active">Messages</a></li>
-
-<li><a href="profile.html">Profile</a></li>
-
-</ul>
-
-</nav>
+</div>
 
 </header>
 
+
 <section class="messages-page">
 
-<h1 class="feed-title">
+<h1>💬 Messages</h1>
 
-💬 Messages
-
-</h1>
 
 <div class="chat-container">
 
-<!-- LEFT SIDE -->
+
+<!-- =========================
+     CONVERSATION LIST
+========================= -->
 
 <div class="chat-list">
 
 <input
-type="text"
-id="searchUser"
-placeholder="🔍 Search conversation">
+    type="text"
+    id="searchUser"
+    placeholder="🔍 Search users..."
+    autocomplete="off"
+>
 
-<div class="chat-user active-user">
 
-<div class="avatar">👨🏽</div>
+<div id="usersList">
 
-<div>
-
-<h3>David</h3>
-
-<p>🟢 Online</p>
-
-</div>
-
-</div>
-
-<div class="chat-user">
-
-<div class="avatar">👩🏾</div>
-
-<div>
-
-<h3>Sarah</h3>
-
-<p>Last seen 5 mins ago</p>
-
-</div>
-
-</div>
-
-<div class="chat-user">
-
-<div class="avatar">🤖</div>
-
-<div>
-
-<h3>Lumora AI</h3>
-
-<p>Ask me anything...</p>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- RIGHT SIDE -->
-
-<div class="chat-box">
-
-<div class="chat-header">
-
-<div>
-
-<h2 id="chatName">
-
-David
-
-</h2>
-
-<p id="chatStatus">
-
-🟢 Online
-
+<p style="opacity:.7;text-align:center;padding:20px;">
+Loading users...
 </p>
 
 </div>
 
 </div>
 
+
+
+<!-- =========================
+     CHAT AREA
+========================= -->
+
+<div class="chat-box">
+
+
+<div class="chat-header">
+
+<div>
+
+<h2 id="chatName">
+Select a user
+</h2>
+
+<p id="chatStatus">
+Choose someone to start chatting
+</p>
+
+</div>
+
+</div>
+
+
+
 <div
-class="chat-messages"
-id="chatMessages">
+    class="chat-messages"
+    id="chatMessages"
+>
 
-<div class="message received">
+<div style="text-align:center;opacity:.6;padding:30px;">
 
-Hey 👋
-
-</div>
-
-<div class="message sent">
-
-I'm building Lumora 🚀
-
-</div>
-
-<div class="message received">
-
-That's awesome 🔥
+💬 Select a person to start a private conversation.
 
 </div>
 
 </div>
+
+
 
 <div class="chat-input">
 
 <input
-type="text"
-id="messageInput"
-placeholder="Type a message...">
+    type="text"
+    id="messageInput"
+    placeholder="Type a message..."
+    autocomplete="off"
+    disabled
+>
 
 <button
-id="sendBtn"
-class="primary">
+    id="sendBtn"
+    class="primary"
+    disabled
+>
 
 📤 Send
 
@@ -177,29 +136,27 @@ class="primary">
 
 </div>
 
+
 </div>
 
 </div>
 
 </section>
 
+
 <footer>
 
-<p>
+<p>© 2026 Lumora</p>
 
-© 2026 Lumora
-
-</p>
-
-<p>
-
-Discover • Learn • Connect • Grow
-
-</p>
+<p>Discover • Learn • Connect • Grow</p>
 
 </footer>
 
-<script type="module" src="../js/messages.js"></script>
+
+<script
+    type="module"
+    src="../js/messages.js">
+</script>
 
 </body>
 
