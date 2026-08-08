@@ -5,17 +5,23 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Messages | Lumora</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
 
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet"
+      href="../style.css">
 
 </head>
 
@@ -23,134 +29,143 @@
 
 <header class="topbar">
 
-<div class="logo">
-    🌟 Lumora
-</div>
+    <div class="logo">
 
-<div class="top-icons">
+        🌟 Lumora
 
-<a href="dashboard.html">🏠</a>
+    </div>
 
-<a href="notifications.html">🔔</a>
+    <div class="top-icons">
 
-<a href="profile.html">👤</a>
+        <a href="notifications.html">🔔</a>
 
-</div>
+        <a href="profile.html">👤</a>
+
+    </div>
 
 </header>
 
 
-<section class="messages-page">
+<main class="messages-page">
 
-<h1>💬 Messages</h1>
+    <h1 class="feed-title">
 
+        💬 Private Messages
 
-<div class="chat-container">
-
-
-<!-- =========================
-     CONVERSATION LIST
-========================= -->
-
-<div class="chat-list">
-
-<input
-    type="text"
-    id="searchUser"
-    placeholder="🔍 Search users..."
-    autocomplete="off"
->
+    </h1>
 
 
-<div id="usersList">
-
-<p style="opacity:.7;text-align:center;padding:20px;">
-Loading users...
-</p>
-
-</div>
-
-</div>
+    <div class="chat-container">
 
 
+        <!-- =========================
+             USERS / CONVERSATIONS
+        ========================== -->
 
-<!-- =========================
-     CHAT AREA
-========================= -->
+        <div class="chat-list">
 
-<div class="chat-box">
+            <input
+                type="text"
+                id="searchUser"
+                placeholder="🔍 Search Lumorians...">
 
 
-<div class="chat-header">
+            <div id="usersList">
 
-<div>
+                <p>
+                    Loading users...
+                </p>
 
-<h2 id="chatName">
-Select a user
-</h2>
+            </div>
 
-<p id="chatStatus">
-Choose someone to start chatting
-</p>
-
-</div>
-
-</div>
+        </div>
 
 
 
-<div
-    class="chat-messages"
-    id="chatMessages"
->
+        <!-- =========================
+             CHAT
+        ========================== -->
 
-<div style="text-align:center;opacity:.6;padding:30px;">
-
-💬 Select a person to start a private conversation.
-
-</div>
-
-</div>
+        <div class="chat-box">
 
 
+            <div class="chat-header">
 
-<div class="chat-input">
+                <div>
 
-<input
-    type="text"
-    id="messageInput"
-    placeholder="Type a message..."
-    autocomplete="off"
-    disabled
->
+                    <h2 id="chatName">
 
-<button
-    id="sendBtn"
-    class="primary"
-    disabled
->
+                        Select a user
 
-📤 Send
+                    </h2>
 
-</button>
+                    <p id="chatStatus">
 
-</div>
+                        Choose someone to start chatting.
+
+                    </p>
+
+                </div>
+
+            </div>
 
 
-</div>
 
-</div>
+            <div
+                class="chat-messages"
+                id="chatMessages">
 
-</section>
+                <div class="message received">
+
+                    👋 Select a Lumorian from the left
+                    to start a private conversation.
+
+                </div>
+
+            </div>
 
 
-<footer>
 
-<p>© 2026 Lumora</p>
+            <div class="chat-input">
 
-<p>Discover • Learn • Connect • Grow</p>
+                <input
+                    type="text"
+                    id="messageInput"
+                    placeholder="Select a user first..."
+                    disabled>
 
-</footer>
+
+                <button
+                    id="sendBtn"
+                    class="primary"
+                    disabled>
+
+                    📤 Send
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<nav class="bottom-nav">
+
+    <a href="dashboard.html">🏠</a>
+
+    <a href="feed.html">📰</a>
+
+    <a href="post.html">➕</a>
+
+    <a href="messages.html">💬</a>
+
+    <a href="profile.html">👤</a>
+
+</nav>
 
 
 <script
