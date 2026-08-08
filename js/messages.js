@@ -181,11 +181,11 @@ function displayUsers(users) {
 
     users.forEach((user) => {
 
-        const username =
-            user.displayName ||
-            user.username ||
-            "Lumorian";
-
+        
+const username =
+    user.fullName ||
+    user.username ||
+    "Lumorian";
 
         const avatar =
             user.photoURL ||
