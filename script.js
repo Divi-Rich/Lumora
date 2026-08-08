@@ -1,24 +1,64 @@
+/* ======================================================
+   LUMORA V3.0
+   MAIN JAVASCRIPT
+====================================================== */
+
+
+/* ==========================
+   ANIMATED COUNTERS
+========================== */
+
 function animate(id, end) {
 
-let current = 0;
+    const element = document.getElementById(id);
 
-const speed = Math.ceil(end / 100);
+    if (!element) {
+        return;
+    }
 
-const counter = setInterval(() => {
+    let current = 0;
 
-current += speed;
+    const duration = 1800;
 
-if (current >= end) {
-current = end;
-clearInterval(counter);
+    const steps = 100;
+
+    const increment = end / steps;
+
+    const intervalTime = duration / steps;
+
+
+    const counter = setInterval(() => {
+
+        current += increment;
+
+
+        if (current >= end) {
+
+            current = end;
+
+            clearInterval(counter);
+
+        }
+
+
+        element.textContent =
+            Math.floor(current).toLocaleString();
+
+    }, intervalTime);
+
 }
 
-document.getElementById(id).textContent = current.toLocaleString();
 
-}, 20);
+/* ==========================
+   START COUNTERS
+========================== */
 
-}
+document.addEventListener("DOMContentLoaded", () => {
 
-animate("users", 1285);
-animate("posts", 5432);
-animate("groups", 86);
+    animate("users", 1285);
+
+    animate("posts", 5432);
+
+    animate("groups", 86);
+
+});
