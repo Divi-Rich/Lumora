@@ -55,29 +55,33 @@ signupForm.addEventListener("submit", async (e) => {
 
         const user = userCredential.user;
 
-        await setDoc(doc(db, "users", user.uid), {
+await setDoc(doc(db, "users", user.uid), {
 
-            uid: user.uid,
+    uid: user.uid,
 
-            fullName: fullName.value,
+    fullName: fullName.value.trim(),
 
-            username: username.value.toLowerCase(),
+    username: username.value.trim().toLowerCase(),
 
-            email: email.value,
+    email: email.value.trim().toLowerCase(),
 
-            bio: "Hello! I'm new to Lumora.",
+    bio: "Hello! I'm new to Lumora.",
 
-            profilePicture: "",
+    profilePicture: "",
 
-            followers: 0,
+    online: true,
 
-            following: 0,
+    lastSeen: serverTimestamp(),
 
-            verified: false,
+    followers: 0,
 
-            createdAt: serverTimestamp()
+    following: 0,
 
-        });
+    verified: false,
+
+    createdAt: serverTimestamp()
+
+});
 
         alert("🎉 Welcome to Lumora!");
 
