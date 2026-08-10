@@ -88,10 +88,15 @@ async function loadUsers() {
 
     try {
 
-        const snapshot =
-            await getDocs(
-                collection(db, "users")
-            );
+        console.log("Current user:", currentUser);
+console.log("Starting users query...");
+
+const snapshot = await getDocs(
+    collection(db, "users")
+);
+
+console.log("Users query completed.");
+console.log("Number of users:", snapshot.size);
 
 
         allUsers = [];
