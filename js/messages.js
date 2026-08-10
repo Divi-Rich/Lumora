@@ -181,9 +181,9 @@ function displayUsers(users) {
 
     users.forEach((user) => {
 
-        
 const username =
     user.fullName ||
+    user.displayName ||
     user.username ||
     "Lumorian";
 
@@ -269,12 +269,12 @@ searchUser.addEventListener(
         const filtered =
             allUsers.filter((user) => {
 
-                const name =
-                    (
-                        user.displayName ||
-                        user.username ||
-                        ""
-                    ).toLowerCase();
+                const name = (
+    user.fullName ||
+    user.displayName ||
+    user.username ||
+    ""
+).toLowerCase();
 
 
                 const email =
