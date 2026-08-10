@@ -5,7 +5,6 @@ import {
     getDocs,
     addDoc,
     doc,
-    getDoc,
     setDoc,
     query,
     orderBy,
@@ -390,30 +389,24 @@ async function loadConversation() {
 
     if (!conversationSnap.exists()) {
 
-        await setDoc(
-            conversationRef,
-            {
+     await setDoc(
+    conversationRef,
+    {
+        participants: [
+            currentUser.uid,
+            selectedUser.uid
+        ],
 
-                participants: [
+        createdAt: serverTimestamp(),
 
-                    currentUser.uid,
+        lastMessage: "",
 
-                    selectedUser.uid
-
-                ],
-
-                createdAt:
-                    serverTimestamp(),
-
-                lastMessage: "",
-
-                lastMessageAt:
-                    serverTimestamp()
-
-            }
-        );
-
+        lastMessageAt: serverTimestamp()
+    },
+    {
+        merge: true
     }
+);
 
 
     chatMessages.innerHTML = `
